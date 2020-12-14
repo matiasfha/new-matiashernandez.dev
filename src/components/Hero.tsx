@@ -2,9 +2,9 @@ import React from 'react'
 import tw, { styled } from 'twin.macro'
 import GridDefault from '@/components/Grid'
 
-import Instagram from '@/assets/instagram-brands.svg'
 import Twitter from '@/assets/twitter-brands.svg'
 import Egghead from '@/assets/egghead.svg'
+import Github from '@/assets/github-brands.svg'
 import photo from '@/images/photo.png'
 
 const Social = styled.div`
@@ -52,6 +52,9 @@ const Hero: React.FC = ({ children, ...props }) => {
             </a>
             <a href="http://egghead.io/instructors/matias-francisco-hernandez-arellano?af=4cexzz">
               <Egghead width="40px" height="40px" />
+            </a>
+            <a href="https://github.com/matiasfha">
+              <Github width="40px" height="40px" />
             </a>
           </Social>
         </div>

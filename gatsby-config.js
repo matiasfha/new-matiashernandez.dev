@@ -14,32 +14,6 @@ const baseUrl = 'https://www.matiashernandez.dev',
   isNetlifyProduction = NETLIFY_ENV === 'production',
   siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
-const pageContent = {
-  eggheadPlaylist: [
-    {
-      img:
-        'https://og-image-react-egghead.now.sh/playlists/hooks-3d62?v=20201120',
-      url: 'http://egghead.io/playlists/hooks-3d62',
-      title:
-        'Construye Componentes Avanzados con React Hooks y patrones de Diseño',
-    },
-    {
-      img:
-        'https://og-image-react-egghead.now.sh/playlists/creacion-de-un-plugin-de-gatsby-desde-cero-5c8b?v=20201120',
-      url:
-        'https://egghead.io/playlists/creacion-de-un-plugin-de-gatsby-desde-cero-5c8b',
-      title: 'Creación de un plugin de Gatsby desde Cero',
-    },
-    {
-      img:
-        'https://og-image-react-egghead.now.sh/lesson/react-native-crear-animacion-con-react-native-y-la-api-animated?v=20200116',
-      url:
-        'https://egghead.io/lessons/react-native-crear-animacion-con-react-native-y-la-api-animated',
-      title: 'Crear Animación con React Native y la API Animated',
-    },
-  ],
-}
-
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
@@ -62,7 +36,6 @@ module.exports = {
     instagram: '@matiasfha',
     organization: '',
     image: 'assets/photo.png',
-    pageContent,
   },
   plugins: [
     {
@@ -72,14 +45,23 @@ module.exports = {
         name: 'blog',
       },
     },
-    // {
-    //   resolve: 'gatsby-source-buzzsprout-api',
-    //   options: {
-    //     name: 'ControlRemoto',
-    //     token: BUZZSPROUT_TOKEN,
-    //     podcastId: '1057351',
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-buzzsprout-api',
+      options: {
+        name: 'ControlRemoto',
+        token: BUZZSPROUT_TOKEN,
+        podcastId: '1057351',
+      },
+    },
+    {
+      resolve: `gatsby-source-buzzsprout-api`,
+      options: {
+        name: 'CafeConTech',
+        token: BUZZSPROUT_TOKEN,
+        podcastId: '1081172',
+      },
+    },
+
     {
       resolve: 'gatsby-plugin-mdx',
       options: {

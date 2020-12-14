@@ -16,9 +16,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
 background-image: linear-gradient(rgb(255, 255, 255) 0%, rgb(255, 255, 255) 88%, rgb(244, 247, 250) 100%);
-background: rgb(240,240,240);
-background: linear-gradient(90deg, rgba(240,240,240,1) 5%, rgba(255,255,255,1) 100%);
-  }
+background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(219,234,241,1) 53%, rgba(244,247,250,1) 100%);
+}
 
   pre {
     background-color: #2f1e2e !important;
