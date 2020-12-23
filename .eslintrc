@@ -1,0 +1,36 @@
+{
+  "extends": [
+    "kentcdodds",
+    "kentcdodds/react",
+    "kentcdodds/jsx-a11y",
+    "kentcdodds/jest",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  {
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        [ "@": "./src", "@/assets": "./assets"]
+      ]
+    }
+  }
+},
+  "rules": {
+    "import/no-unresolved": "off",
+    "react/prop-types": "off",
+    "react/jsx-pascal-case": "off",
+    "import/order": "off",
+    "babel/camelcase": "off",
+    "jsx-a11y/label-has-for": "off",
+    "max-lines-per-function": "off",
+    "babel/quotes": "off",
+    "consistent-return": "off",
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".tsx"] }],
+    "import/extensions": ["warn",{"js": "always", "css": "always", "mdx": "ignorePackages","png": "always", "jpeg": "always"}]
+  }
+}

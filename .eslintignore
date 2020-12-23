@@ -1,0 +1,8 @@
+node_modules
+coverage
+.cache
+build
+public
+.netlify
+gatsby-node.js
+gatsby-config.js
