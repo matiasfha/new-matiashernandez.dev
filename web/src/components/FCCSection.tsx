@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from 'react-markdown';
 import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -15,9 +16,12 @@ const Section = styled(DefaultGrid)`
 `;
 const H2 = styled.h1`
   ${tw`text-gray-900 text-2xl font-muli font-bold text-left inline-block`}
-`;
-const A = styled.a`
+p {
+${tw`m-0`}
+}
+ a {
   ${tw`no-underline transform transition duration-300 inline-block text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+}
 `;
 
 const Copy = tw.p`
@@ -79,22 +83,47 @@ query {
       title
     }
   }
+  allFeedFccEn {
+    nodes {
+      contentSnippet
+      id
+      image {
+        attrs {
+          url
+        }
+      }
+      link
+      isoDate(formatString: "DD/MM/YYYY")
+      title
+    }
+  }
 }
 `;
 
-export default function FreecodecampSection() {
-  const { allFeedFccEs } = useStaticQuery(query);
+const title = {
+ es: `También escribo en [Freecodecamp](http://freecodecamp.org/espanol/news/author/matias-hernandez)`,
+en: `I also write on [Freecodecamp](http://freecodecamp.org/news/author/matias-hernandez)`
+}
+
+const copy = {
+  es: `Freecodecamp es una organización sin fines de lucro para la enseñanza de desarrollo de software y formación de futuros desarrolladores.
+Tengo el honor y agrade de escribir para su editorial en español e ingles.`,
+  en: `Freecodecamp is a non-profit organization for teaching software development and training future developers.
+I have the honor and pleasure to write for your editorial in Spanish and English.`
+}
+
+export default function FreecodecampSection({ lang = 'es' }) {
+  const { allFeedFccEs, allFeedFccEn } = useStaticQuery(query);
+  const data = lang === 'es' ? allFeedFccEs : allFeedFccEn
   return (
     <Section>
       <div>
-        <H2>También escribo en <A href="http://freecodecamp.org/espanol/news/author/matias-hernandez/">Freecodecamp</A></H2>
+        <H2><ReactMarkdown>{title[lang]}</ReactMarkdown></H2>
       </div>
-      <Copy>
-        {`Freecodecamp es una organización sin fines de lucro para la enseñanza de desarrollo de software y formación de futuros desarrolladores.
-Tengo el honor y agrade de escribir para su editorial en español e ingles.`}
+      <Copy>{copy[lang]}
       </Copy>
       <Articles>
-        {allFeedFccEs.nodes.map(post => {
+        {data.nodes.map(post => {
           return (
             <Card href={post.link} key={post.id}>
               <img

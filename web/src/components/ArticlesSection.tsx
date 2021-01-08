@@ -15,9 +15,12 @@ const Section = styled(DefaultGrid)`
 `;
 const H2 = styled.h1`
   ${tw`text-gray-900 text-2xl font-muli font-bold text-left inline-block`}
-`;
-const A = styled.a`
+p {
+${tw`m-0`}
+}
+a{
   ${tw`no-underline transform transition duration-300 inline-block text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+}
 `;
 
 const Copy = tw.p`
@@ -65,7 +68,7 @@ const H3 = tw.h3`
 
 const query = graphql`
   query {
-    allMdx(filter: { frontmatter: { favorite: { eq: true } } }) {
+en: allMdx(filter: {frontmatter: {favorite: {eq: true}, lang: {eq: "en"}}}) {
       nodes {
 id
         slug
@@ -83,7 +86,28 @@ id
         }
       }
     }
+es: allMdx(filter: {frontmatter: {favorite: {eq: true}, lang: {ne: "en"}}}) {
+      nodes {
+id
+        slug
+        frontmatter {
+          banner {
+            childImageSharp {
+              fluid {
+                src
+              }
+            }
+          }
+          title
+          description
+          keywords
+        }
+      }
+    }
+
   }
+
+
 `;
 
 export const ArticlesList = ({ articles}) => {
@@ -113,16 +137,13 @@ export const ArticlesList = ({ articles}) => {
  )
 }
 
-export default function ArticlesSection() {
-  const { allMdx } = useStaticQuery(query);
-  return (
-    <Section>
-      <div>
-        <H2>Escribo algunos </H2>
-        <A href="/posts">Artículos</A>
-      </div>
-      <Copy>
-        {`Un digital garden/jardín digital es un espacio digital lleno de
+const title = {
+  es: `Escribo algunos [Artículos](/blog)`,
+  en: `I write some Articles`,
+}
+
+const copy = {
+  es: `Un digital garden/jardín digital es un espacio digital lleno de
                     ideas interconectadas e información recolectada, curada y siempre en
                     progreso durante el tiempo. Esto implica que dentro de este espacio
                     existirá contenido que aún no "florece" o incluso que se encuentra
@@ -131,9 +152,30 @@ export default function ArticlesSection() {
                     desarrollo web en general.
 
         Esta es mi selección personal de esas
-                    semillas.`}
+                    semillas.`,
+  en: `A digital garden is a digital space full of
+                     interconnected ideas and information collected, curated and always in
+                     progress over time. This implies that within this space
+                     there will be content that is not yet "blooming" or even found
+                     in the state of seed or germination. A set of ideas that
+                     keep in progress. It will be focused on Javascript, React and
+                     web development in general.
+
+         This is my personal selection of those
+                     seeds.`
+}
+
+export default function ArticlesSection({ lang = 'es'}) {
+  const { es, en } = useStaticQuery(query);
+
+  return (
+    <Section>
+      <div>
+        <H2>{title[lang]}</H2>
+      </div>
+      <Copy>{copy[lang]}
       </Copy>
-      <ArticlesList articles={allMdx.nodes} />
+      <ArticlesList articles={lang === 'es'? es.nodes : en.nodes} />
       </Section>
   );
 }

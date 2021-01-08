@@ -213,5 +213,17 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: "https://www.freecodecamp.org/news/author/matias-hernandez/rss/",
+        name: "FCCEn",
+        parserOption: {
+          customFields: {
+            item: [["media:content", "image"]],
+          },
+        },
+      },
+    },
   ],
 };

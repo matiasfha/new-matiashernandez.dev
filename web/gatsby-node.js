@@ -20,10 +20,10 @@ exports.sourceNodes = async ({
     "https://cyypawp1.api.sanity.io/v1/data/query/production?query=*%5B_type%20%3D%3D%20%22siteSettings%22%5D"
   );
   const { result } = await request.json();
-  const promises = result[0].Esegghead.map((item) => {
+  let promises = result[0].Esegghead.map((item) => {
     return ogs({ url: item });
   });
-  const data = await Promise.all(promises);
+  let data = await Promise.all(promises);
   data.forEach((item, index) => {
     createNode({
       ...item.result,
@@ -32,6 +32,24 @@ exports.sourceNodes = async ({
       children: [],
       internal: {
         type: "Egghead",
+        content: JSON.stringify(item.result),
+        contentDigest: createContentDigest(item.result),
+      },
+    });
+  });
+
+  promises = result[0].Enegghead.map((item) => {
+    return ogs({ url: item });
+  });
+  data = await Promise.all(promises);
+  data.forEach((item, index) => {
+    createNode({
+      ...item.result,
+      id: createNodeId(`EggheadEn-${index}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: "EggheadEn",
         content: JSON.stringify(item.result),
         contentDigest: createContentDigest(item.result),
       },

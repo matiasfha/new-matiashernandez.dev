@@ -1,5 +1,5 @@
 import React from "react";
-import MDX from "@mdx-js/runtime";
+import ReactMarkdown from 'react-markdown';
 import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -32,9 +32,13 @@ const Copy = tw.p`
 
 const H2 = styled.h1`
   ${tw`text-gray-900 text-2xl font-muli font-bold text-left inline-block`}
-`;
-const A = styled.a`
+p {
+ ${tw`m-0`}
+}
+a {
   ${tw`no-underline transform transition duration-300 inline-block text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+
+}
 `;
 
 const query = graphql`
@@ -58,18 +62,28 @@ query MyQuery {
 }
 `;
 
-const EggheadSection = () => {
+const title = {
+  es: `Lecciones y Cursos en [Egghead](https://egghead.io)`,
+  en: `Lessons and courses at [Egghead](https://egghead.io)`
+}
+
+const copy = {
+  es: `Me encanta enseñar y tuve la gran oportunidad de ser parte de Egghead.
+        Las lecciones y cursos en egghead son el primer y quizá más importante
+        material audiviosual que realizo`,
+  en:`I love teaching and had a great opportunity to be a part of Egghead.
+         The lessons and courses at egghead are the first and perhaps most important
+         audio material that I make`
+}
+const EggheadSection = ({ lang = 'es' }) => {
   const data = useStaticQuery(query);
   const { edges } = data.allEgghead;
   return (
     <Section>
       <div>
-        <H2>Lecciones y Cursos en </H2> <A href="https://egghead.io">Egghead</A>
+      <H2><ReactMarkdown>{title[lang]}</ReactMarkdown></H2>
       </div>
-      <Copy>
-        Me encanta enseñar y tuve la gran oportunidad de ser parte de Egghead.
-        Las lecciones y cursos en egghead son el primer y quizá más importante
-        material audiviosual que realizo
+      <Copy>{copy[lang]}
       </Copy>
       <Gallery>
         {edges.map(({node}) => {
