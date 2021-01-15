@@ -17,7 +17,7 @@ const LogoImage = tw.img`
 `;
 
 const Menu = tw.div`
-text-white md:justify-self-end
+self-end text-white justify-self-end
 `;
 
 const MenuItem = styled(Link)`
@@ -65,7 +65,7 @@ const NavBar: React.FC = ({ lang = 'es' }) => {
   return (
     <Nav>
       <Content>
-      <Link to="/">
+      <Link to={home.link}>
           <LogoImage src={logo} alt="Logo Matias Hernandez" />
       </Link>
         <Menu>
