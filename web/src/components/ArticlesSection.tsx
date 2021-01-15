@@ -85,7 +85,7 @@ id
           banner {
             childImageSharp {
               fluid {
-                src
+              ...GatsbyImageSharpFluid
               }
             }
           }
@@ -103,7 +103,7 @@ id
           banner {
             childImageSharp {
               fluid {
-                src
+              ...GatsbyImageSharpFluid
               }
             }
           }
@@ -128,11 +128,11 @@ export const ArticlesList = ({ articles}) => {
             .join(", ");
           return (
             <Card href={`/${post.slug}`} key={post.id}>
-              {/* <span>{post.frontmatter.date}</span> */}
-              <img
-                src={post.frontmatter.banner.childImageSharp.fluid.src}
+              {post.frontmatter.banner?.childImageSharp?.fluid==null ? null :
+              <Img
+                fluid={post.frontmatter.banner.childImageSharp.fluid}
                 alt={post.frontmatter.alt}
-              />
+                />}
               <div>
                 <H3>{post.frontmatter.title}</H3>
                 <p>{post.frontmatter.description}</p>
