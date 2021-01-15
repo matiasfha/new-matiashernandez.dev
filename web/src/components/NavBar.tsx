@@ -10,14 +10,14 @@ const Nav = tw.nav`
   h-16 max-w-full px-4 md:px-8 lg:w-auto pt-4
 `;
 const Content = tw(Grid)`
-  md:grid-flow-col grid-rows-2 md:grid-rows-1 justify-between md:grid-cols-4
+  md:grid-flow-col grid-rows-2 md:grid-rows-1 justify-between md:grid-cols-2
 `;
 const LogoImage = tw.img`
   h-8 md:h-12 w-8 md:w-12 hidden md:block
 `;
 
 const Menu = tw.div`
-self-end text-white  lg:self-center md:col-span-3 self-center
+text-white md:justify-self-end
 `;
 
 const MenuItem = styled(Link)`
@@ -27,9 +27,7 @@ const MenuItem = styled(Link)`
 `;
 
 const HomeItem = styled(MenuItem)`
-  span {
-  ${tw`md:hidden`}
-}
+   ${tw`md:hidden`}
 `
 const query = graphql`
   query NavbarQuery{
@@ -67,11 +65,13 @@ const NavBar: React.FC = ({ lang = 'es' }) => {
   return (
     <Nav>
       <Content>
-        <Menu style={{ justifySelf: "end" }}>
-        <MenuItem to={home.link}>
+      <Link to="/">
           <LogoImage src={logo} alt="Logo Matias Hernandez" />
-          Home
-        </MenuItem>
+      </Link>
+        <Menu>
+          <HomeItem to={home.link}>
+            <span>Home</span>
+          </HomeItem>
           {links.map(item => {
             return (
             <MenuItem to={item.link} key={item.name}>{item.name}</MenuItem>
