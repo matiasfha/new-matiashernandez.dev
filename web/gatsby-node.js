@@ -77,6 +77,7 @@ exports.onCreateNode = async ({
       frontmatter: {
         title: node.title,
         description: node.description,
+        locale: node.locale || "es",
       },
       internal: {
         type: `MDX${node.internal.type}`,
@@ -119,10 +120,10 @@ exports.onCreateNode = async ({
     }
   }
 
-  if (node.internal.type === "Egghead") {
+  if (node.internal.type === "Egghead" || node.internal.type === "EggheadEn") {
     try {
       const fileNode = await createRemoteFileNode({
-        url: node.twitterImage.url,
+        url: node.ogImage.url,
         parentNodeId: node.id,
         createNode,
         createNodeId,
@@ -245,6 +246,7 @@ const AboutPage = async (graphql, createPage, reporter) => {
             frontmatter {
               title
               description
+              locale
             }
           }
         }
@@ -252,17 +254,17 @@ const AboutPage = async (graphql, createPage, reporter) => {
     }
   `);
 
-  const { node } = result.data.allMdxSanityAboutPage.edges[0];
-
-  createPage({
-    path: `about`,
-    component: path.resolve(`./src/templates/page.js`),
-    context: {
-      id: node.id,
-      pagePath: `about`,
-      locale: "es",
-      ...node,
-    },
+  result.data.allMdxSanityAboutPage.edges.forEach(({ node }) => {
+    const localePath = node.frontmatter.locale[0] === "es" ? "" : "en/";
+    createPage({
+      path: `${localePath}about`,
+      component: path.resolve(`./src/templates/page.js`),
+      context: {
+        id: node.id,
+        pagePath: `${localePath}/about`,
+        ...node,
+      },
+    });
   });
 };
 

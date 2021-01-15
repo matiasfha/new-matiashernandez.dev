@@ -7,7 +7,7 @@ import FCCSection from "@/components/FCCSection";
 
 export default function Index() {
   return (
-    <Layout>
+    <Layout lang="en">
       <Hero lang="en" />
       <EggheadSection lang="en" />
       <FCCSection lang="en" />

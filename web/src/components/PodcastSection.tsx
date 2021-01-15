@@ -8,21 +8,21 @@ import DefaultGrid from "@/components/Grid";
 const Section = styled(DefaultGrid)`
   padding: 2rem 0;
   position: relative;
-  grid-template-rows: 42px minmax(60px, 80px) 1fr;
+  grid-template-rows: minmax(42px, 80px) minmax(60px, 80px) 1fr;
   margin-top: 2rem;
   p {
     ${tw`text-gray-900`}
   }
 `;
-const H2 = styled.h1`
-  ${tw`text-gray-900 text-2xl font-muli font-bold text-left inline-block`}
+const H2 = styled.h2`
+  ${tw`text-gray-900 text-xl md:text-2xl font-muli font-bold text-left inline-block`}
 `;
 const A = styled.a`
-  ${tw`no-underline transform transition duration-300 inline-block text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+  ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
 `;
 
 const Copy = tw.p`
-font-muli
+  font-muli text-sm md:text-base
 `;
 
 const Podcasts = tw.div`
@@ -90,10 +90,10 @@ export default function PodcastSection() {
   return (
     <Section>
       <div>
-        <H2> Podcasts </H2>
+        <H2> Podcasts
         <A href="https://controlremoto.io">Control Remoto</A>
-        <H2>y</H2>
-        <A href="http://www.cafecon.tech"> Café con Tech </A>
+        y <A href="http://www.cafecon.tech">Café con Tech </A>
+      </H2>
       </div>
       <Copy>
         Me encanta enseñar y tuve la gran oportunidad de ser parte de Egghead.

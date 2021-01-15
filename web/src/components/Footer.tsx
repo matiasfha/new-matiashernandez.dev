@@ -27,7 +27,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   ${tw`h-12 text-white font-muli ml-2 text-base font-semibold rounded px-4 appearance-none overflow-hidden relative
-  transition duration-200 ease-in bg-blue-900 hover:bg-blue-800 cursor-pointer border-0
+  transition duration-200 ease-in bg-blue-900 hover:bg-blue-800 cursor-pointer border-0 mt-2 md:mt-0
 `}
 `;
 
@@ -70,8 +70,7 @@ const Footer = () => {
         </a>
       </Social>
       <p>
-        {" "}
-        Mantente al día con mas Javascript, React, Typescript y otros temas de
+        Mantente al día con más Javascript, React, Typescript y otros temas de
         interés
       </p>
       <p style={{ fontSize: "2rem" }}>🎉 📩 🎉</p>

@@ -30,9 +30,10 @@ function Page({ children, pageContext }) {
   const frontmatter = pageContext.frontmatter
     ? pageContext.frontmatter
     : { ...pageContext };
+
   return (
     <>
-      <Layout frontmatter={frontmatter}>
+      <Layout frontmatter={frontmatter} lang={pageContext.locale}>
         <Grid>
           <MDXRenderer>{pageContext.childMdx.body}</MDXRenderer>
         </Grid>

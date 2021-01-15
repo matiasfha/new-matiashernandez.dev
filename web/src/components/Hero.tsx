@@ -6,11 +6,12 @@ import Twitter from "../../assets/twitter-brands.svg";
 import Egghead from "../../assets/egghead.svg";
 import Github from "../../assets/github-brands.svg";
 import photo from "@/images/photo.jpg";
+import { bpMaxSM } from "@/lib/breakpoints";
 
 const Social = styled.div`
-  ${tw`flex flex-row items-center justify-start w-48`}
+  ${tw`flex flex-row items-center justify-start w-40 md:w-48`}
   a {
-    ${tw`no-underline h-40 w-40`}
+    ${tw`no-underline h-28 md:h-40 w-28 md:w-40`}
     svg {
       ${tw`transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110`}
     }
@@ -19,12 +20,15 @@ const Social = styled.div`
 const Container = styled.div`
   ${tw`max-w-full h-60 pt-8`}
   p {
-    ${tw`text-gray-900`}
+    ${tw`text-gray-900 text-sm md:text-base`}
   }
 `;
 const Grid = styled(GridDefault)`
   ${tw`font-muli`}
   grid-template-columns: 2fr 1fr;
+  ${bpMaxSM} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const H1 = styled.h1`
@@ -36,6 +40,9 @@ const H1 = styled.h1`
 const Photo = styled.img`
   justify-self: end;
   ${tw`hidden md:block object-cover object-center w-52 h-52 rounded-full`};
+  ${bpMaxSM} {
+    display: none;
+  }
 `;
 
 // @TODO move this to Sanity

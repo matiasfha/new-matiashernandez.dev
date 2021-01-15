@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import ReactMarkdown from 'react-markdown'
 import DefaultGrid from "@/components/Grid";
+import { bpMaxSM } from "@/lib/breakpoints";
 
 const Section = styled(DefaultGrid)`
   padding: 2rem 0;
@@ -29,10 +30,18 @@ const Articles = tw.div`
   grid grid-cols-1 gap-6 mt-12 mx-auto w-11/12
 `;
 
-const Card = styled.a`
-  ${tw`grid mb-4 gap-8 w-full no-underline transform transition duration-300 hover:shadow-lg hover:scale-110 font-muli text-gray-500`};
+const Card = styled.div`
+  ${tw`grid mb-4 gap-8 w-full no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-4`};
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";
+  ${bpMaxSM} {
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 1fr;
+    grid-template-areas: "imagen"
+  "content";
+
+  }
   img {
     grid-area: imagen;
     width: 100%;
@@ -60,8 +69,12 @@ const Card = styled.a`
   }
 `;
 
-const H3 = tw.h3`
-  font-muli text-gray-900 m-0
+const H3 = styled.h3`
+  ${tw`font-muli text-gray-900 m-0`};
+  a {
+${tw`no-underline`}
+}
+
 `;
 
 const query = graphql`
@@ -91,15 +104,15 @@ export const TalksList = ({ articles}) => {
       <Articles>
         {articles.map((post) => {
           return (
-            <Card href={post.link} key={post.id}>
+            <Card key={post.id}>
               {/* <span>{post.frontmatter.date}</span> */}
               <img
                 src={post.image.asset.fluid.src}
                 alt={post.title}
               />
               <div>
-                <H3>{post.title}</H3>
-                <p><ReactMarkdown>{post.description}</ReactMarkdown></p>
+                  <H3><a href={post.link}>{post.title}</a></H3>
+                <ReactMarkdown>{post.description}</ReactMarkdown>
               </div>
             </Card>
           );

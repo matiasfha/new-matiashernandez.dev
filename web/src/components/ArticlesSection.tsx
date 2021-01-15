@@ -3,38 +3,47 @@ import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import DefaultGrid from "@/components/Grid";
+import { bpMaxSM } from "@/lib/breakpoints";
 
 const Section = styled(DefaultGrid)`
   padding: 2rem 0;
   position: relative;
-  grid-template-rows: 42px minmax(60px, 80px) 1fr;
+  grid-template-rows: 42px minmax(60px, 170px) 1fr;
   margin-top: 2rem;
   p {
     ${tw`text-gray-900`}
   }
 `;
 const H2 = styled.h1`
-  ${tw`text-gray-900 text-2xl font-muli font-bold text-left inline-block`}
+  ${tw`text-gray-900 text-xl md:text-2xl font-muli font-bold text-left inline-block`}
 p {
 ${tw`m-0`}
 }
 a{
-  ${tw`no-underline transform transition duration-300 inline-block text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+  ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
 }
 `;
 
 const Copy = tw.p`
-font-muli
+font-muli text-sm md:text-base
 `;
 
 const Articles = tw.div`
-  grid grid-cols-1 gap-6 mt-12 mx-auto w-11/12
+  grid grid-cols-1 gap-6 mt-12 mx-auto w-full md:w-11/12 mt-16
 `;
 
 const Card = styled.a`
-  ${tw`grid mb-4 gap-8 w-full no-underline transform transition duration-300 hover:shadow-lg hover:scale-110 font-muli text-gray-500`};
+  ${tw`grid mb-4 gap-8 w-full no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-4`};
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";
+  ${bpMaxSM} {
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 1fr;
+    grid-template-areas: "imagen"
+  "content";
+
+  }
   img {
     grid-area: imagen;
     width: 100%;
@@ -138,7 +147,7 @@ export const ArticlesList = ({ articles}) => {
 }
 
 const title = {
-  es: `Escribo algunos [Artículos](/blog)`,
+  es: `Escribo algunos Artículos`,
   en: `I write some Articles`,
 }
 

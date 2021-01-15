@@ -1,22 +1,13 @@
 export default {
-  title: "About page",
-  name: "aboutPage",
+  title: "Navbar",
+  name: "navbar",
   type: "document",
   fields: [
     {
-      name: "title",
-      title: "Title",
-      type: "string"
-    },
-    {
-      name: "content",
-      title: "Content",
-      type: "markdown"
-    },
-    {
-      name: "description",
-      title: "Description",
-      type: "string"
+      title: "Links",
+      name: "link",
+      type: "array",
+      of: [{ type: "menuItem" }]
     },
     {
       name: "locale",

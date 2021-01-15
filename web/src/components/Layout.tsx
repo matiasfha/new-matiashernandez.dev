@@ -60,14 +60,14 @@ type PropsT = {
   frontmatter: FrontMatterT;
   children: ReactChildren;
 };
-const Layout: React.FC<PropsT> = ({ frontmatter = {}, children }: PropsT) => {
+const Layout: React.FC<PropsT> = ({ frontmatter = {}, children, lang='es' }: PropsT) => {
   return (
     <Fragment>
       <Seo frontmatter={frontmatter} />
       <Global styles={GlobalStyle} />
 
       <Container>
-        <NavBar />
+        <NavBar lang={lang}/>
         <Content>
           <MDXProvider
             components={{
