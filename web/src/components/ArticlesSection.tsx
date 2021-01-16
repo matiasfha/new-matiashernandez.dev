@@ -8,7 +8,7 @@ import { bpMaxSM } from "@/lib/breakpoints";
 const Section = styled(DefaultGrid)`
   padding: 2rem 0;
   position: relative;
-  grid-template-rows: 42px minmax(60px, 170px) 1fr;
+  grid-template-rows: minmax(42px, 50px) minmax(60px, 160px) 1fr;
   margin-top: 2rem;
   p {
     ${tw`text-gray-900`}
@@ -16,12 +16,12 @@ const Section = styled(DefaultGrid)`
 `;
 const H2 = styled.h1`
   ${tw`text-gray-900 text-xl md:text-2xl font-muli font-bold text-left inline-block`}
-p {
-${tw`m-0`}
-}
-a{
-  ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
-}
+  p {
+    ${tw`m-0`}
+  }
+  a {
+    ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+  }
 `;
 
 const Copy = tw.p`
@@ -29,11 +29,11 @@ font-muli text-sm md:text-base
 `;
 
 const Articles = tw.div`
-  grid grid-cols-1 gap-6 mt-12 mx-auto w-full md:w-11/12 mt-16
+  grid grid-cols-1 gap-6 mt-12 mx-auto w-full md:w-11/12
 `;
 
 const Card = styled.a`
-  ${tw`grid mb-4 gap-8 w-full no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-4`};
+  ${tw`w-full grid mb-4 gap-8 no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-4`};
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";
   ${bpMaxSM} {
@@ -75,6 +75,7 @@ const H3 = tw.h3`
   font-muli text-gray-900 m-0
 `;
 
+
 const query = graphql`
   query {
 en: allMdx(filter: {frontmatter: {favorite: {eq: true}, lang: {eq: "en"}}}) {
@@ -84,8 +85,8 @@ id
         frontmatter {
           banner {
             childImageSharp {
-              fluid {
-              ...GatsbyImageSharpFluid
+              fluid{
+src
               }
             }
           }
@@ -102,8 +103,8 @@ id
         frontmatter {
           banner {
             childImageSharp {
-              fluid {
-              ...GatsbyImageSharpFluid
+              fluid{
+                src
               }
             }
           }
@@ -129,8 +130,8 @@ export const ArticlesList = ({ articles}) => {
           return (
             <Card href={`/${post.slug}`} key={post.id}>
               {post.frontmatter.banner?.childImageSharp?.fluid==null ? null :
-              <Img
-                fluid={post.frontmatter.banner.childImageSharp.fluid}
+              <img
+                src={post.frontmatter.banner.childImageSharp.fluid.src}
                 alt={post.frontmatter.alt}
                 />}
               <div>

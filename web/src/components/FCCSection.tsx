@@ -17,12 +17,12 @@ const Section = styled(DefaultGrid)`
 `;
 const H2 = styled.h1`
   ${tw`text-gray-900 text-xl md:text-2xl font-muli font-bold text-left inline-block`}
-p {
-${tw`m-0`}
-}
- a {
-  ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
-}
+  p {
+    ${tw`m-0`}
+  }
+  a {
+    ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+  }
 `;
 
 const Copy = tw.p`
