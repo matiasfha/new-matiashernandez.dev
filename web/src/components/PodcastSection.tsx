@@ -8,7 +8,7 @@ import DefaultGrid from "@/components/Grid";
 const Section = styled(DefaultGrid)`
   padding: 2rem 0;
   position: relative;
-  grid-template-rows: minmax(42px, 80px) minmax(60px, 80px) 1fr;
+  grid-template-rows: minmax(42px, 80px) minmax(60px, 80px) min(400px, 1fr);
   margin-top: 2rem;
   p {
     ${tw`text-gray-900`}

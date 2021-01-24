@@ -11,7 +11,7 @@ import { bpMaxSM } from "@/lib/breakpoints";
 const Social = styled.div`
   ${tw`flex flex-row items-center justify-start w-40 md:w-48`}
   a {
-    ${tw`no-underline h-28 md:h-40 w-28 md:w-40`}
+    ${tw`no-underline h-40 w-40`}
     svg {
       ${tw`transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110`}
     }

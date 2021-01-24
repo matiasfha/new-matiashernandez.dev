@@ -31,6 +31,7 @@ const Copy = tw.p`
   font-muli text-sm md:text-base
 `;
 
+
 const query = graphql`
 query MyQuery {
   es: allEgghead {

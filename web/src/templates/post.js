@@ -7,6 +7,7 @@ import tw, { styled, css } from "twin.macro";
 import { TwitterIcon, TwitterShareButton } from "react-share";
 import Seo from "@/components/Seo";
 import Layout from "@/components/Layout";
+import { bpMaxSM } from "@/lib/breakpoints";
 
 const Grid = styled.div`
   ${tw`max-w-screen-lg mx-auto grid grid-cols-1 pt-20`}
@@ -23,6 +24,9 @@ const ImgContainer = styled.div`
   grid-area: img;
   width: 720px;
   justify-self: center;
+  ${bpMaxSM} {
+    width: 100%;
+  }
 `;
 const TitleContainer = styled.div`
   grid-area: title;
