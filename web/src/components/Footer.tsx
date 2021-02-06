@@ -37,50 +37,54 @@ const MadeWith = styled.p`
     ${tw`text-blue-900 no-underline`}
   }
 `;
-export const EmailSignup = ({}) => {
-  return (
-    <form
-      action="https://app.convertkit.com/forms/1902022/subscriptions"
-      method="post"
-    >
-      <Input
-        name="email_address"
-        placeholder="Tu email"
-        required=""
-        type="email"
-      />
-      <Button>Suscríbete</Button>
-    </form>
-  );
+export const EmailSignup = ({ }) => {
+    return (
+        <form
+            action="https://app.convertkit.com/forms/1902022/subscriptions"
+            method="post"
+        >
+            <label htmlFor="email" style={{ visibility: "hidden" }}>
+                Email
+      </label>
+            <Input
+                id="email"
+                name="email_address"
+                placeholder="Tu email"
+                required=""
+                type="email"
+            />
+            <Button>Suscríbete</Button>
+        </form>
+    );
 };
 
 const Footer = () => {
-  return (
-    <Container>
-      <hr />
-      <Social>
-        <a href="https://twitter.com/matiasfha">
-          <Twitter width="40px" height="40px" />
-        </a>
-        <a href="http://egghead.io/instructors/matias-francisco-hernandez-arellano?af=4cexzz">
-          <Egghead width="40px" height="40px" />
-        </a>
-        <a href="https://github.com/matiasfha">
-          <Github width="40px" height="40px" />
-        </a>
-      </Social>
-      <p>
-        Mantente al día con más Javascript, React, Typescript y otros temas de
-        interés
+    return (
+        <Container>
+            <hr />
+            <Social>
+                <a href="https://twitter.com/matiasfha">
+                    <Twitter width="40px" height="40px" />
+                </a>
+                <a href="http://egghead.io/instructors/matias-francisco-hernandez-arellano?af=4cexzz">
+                    <Egghead width="40px" height="40px" />
+                </a>
+                <a href="https://github.com/matiasfha">
+                    <Github width="40px" height="40px" />
+                </a>
+            </Social>
+            <p>
+                Mantente al día con más Javascript, React, Typescript y otros temas de
+                interés
       </p>
-      <p style={{ fontSize: "2rem" }}>🎉 📩 🎉</p>
-      <EmailSignup />
-      <MadeWith>
-        Hecho full JamStack con <a href="">Gatsby</a>, <a href="">Sanity.io</a>.
+            <p style={{ fontSize: "2rem" }}>🎉 📩 🎉</p>
+            <EmailSignup />
+            <MadeWith>
+                Hecho full JamStack con <a href="">Gatsby</a>, <a href="">Sanity.io</a>.
         Hosteado en <a href="">Netlify</a>.
       </MadeWith>
-    </Container>
-  );
+        </Container>
+    );
 };
 
 export default Footer;

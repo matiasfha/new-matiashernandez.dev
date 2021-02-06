@@ -234,5 +234,6 @@ module.exports = {
         defer: true,
       },
     },
+    `gatsby-plugin-feed`,
   ],
 };

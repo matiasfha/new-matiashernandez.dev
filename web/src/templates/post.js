@@ -80,7 +80,7 @@ export default function PostTemplate({ data: { mdx } }) {
           <Footer>
             <p>
               <a
-                href={`https://github.com/matiasfha/matiashernandez.dev/tree/master/content/posts/${mdx.frontmatter.slug}.mdx`}
+                href={`https://github.com/matiasfha/new-matiashernandez.dev/tree/master/web/content/posts/${mdx.frontmatter.slug}.mdx`}
               >
                 Edita esto en github
               </a>
@@ -113,6 +113,7 @@ export const pageQuery = graphql`
         description
         date(formatString: "MMMM DD, YYYY")
         bannerCredit
+        slug
         banner {
           childImageSharp {
             fluid(maxWidth: 920) {

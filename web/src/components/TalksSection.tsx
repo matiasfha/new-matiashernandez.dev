@@ -2,7 +2,7 @@ import React from "react";
 import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown";
 import DefaultGrid from "@/components/Grid";
 import { bpMaxSM } from "@/lib/breakpoints";
 
@@ -35,12 +35,11 @@ const Card = styled.div`
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";
   ${bpMaxSM} {
-
     grid-template-columns: 1fr;
     grid-template-rows: 200px 1fr;
-    grid-template-areas: "imagen"
-  "content";
-
+    grid-template-areas:
+      "imagen"
+      "content";
   }
   img {
     grid-area: imagen;
@@ -72,22 +71,20 @@ const Card = styled.div`
 const H3 = styled.h3`
   ${tw`font-muli text-gray-900 m-0`};
   a {
-${tw`no-underline`}
-}
-
+    ${tw`no-underline`}
+  }
 `;
 
 const query = graphql`
   query {
     allSanityTalks {
-
       nodes {
         description
         id
         image {
           asset {
             fluid {
-              src
+              ...GatsbySanityImageFluid
             }
           }
         }
@@ -96,40 +93,38 @@ const query = graphql`
       }
     }
   }
-
 `;
 
-export const TalksList = ({ articles}) => {
- return (
-      <Articles>
-        {articles.map((post) => {
-          return (
-            <Card key={post.id}>
-              {/* <span>{post.frontmatter.date}</span> */}
-              <img
-                src={post.image.asset.fluid.src}
-                alt={post.title}
-              />
-              <div>
-                  <H3><a href={post.link}>{post.title}</a></H3>
-                <ReactMarkdown>{post.description}</ReactMarkdown>
-              </div>
-            </Card>
-          );
-        })}
-      </Articles>
- )
-}
+export const TalksList = ({ articles }) => {
+    return (
+        <Articles>
+            {articles.map((post) => {
+                return (
+                    <Card key={post.id}>
+                        {/* <span>{post.frontmatter.date}</span> */}
+                        <Img fluid={post.image.asset.fluid} alt={post.title} />
+                        <div>
+                            <H3>
+                                <a href={post.link}>{post.title}</a>
+                            </H3>
+                            <ReactMarkdown>{post.description}</ReactMarkdown>
+                        </div>
+                    </Card>
+                );
+            })}
+        </Articles>
+    );
+};
 
 export default function TalksSection() {
-  const { allSanityTalks } = useStaticQuery(query);
-  return (
-    <Section>
-      <div>
-          <H2>Y hago algunas Charlas</H2>
-      </div>
-        <Copy>También me gusta participar en meetups o encuentros.</Copy>
-      <TalksList articles={allSanityTalks.nodes} />
-      </Section>
-  );
+    const { allSanityTalks } = useStaticQuery(query);
+    return (
+        <Section>
+            <div>
+                <H2>Y hago algunas Charlas</H2>
+            </div>
+            <Copy>También me gusta participar en meetups o encuentros.</Copy>
+            <TalksList articles={allSanityTalks.nodes} />
+        </Section>
+    );
 }

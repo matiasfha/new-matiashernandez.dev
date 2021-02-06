@@ -37,13 +37,15 @@ const Card = styled.a`
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";
   ${bpMaxSM} {
-
     grid-template-columns: 1fr;
     grid-template-rows: 200px 1fr;
-    grid-template-areas: "imagen"
-  "content";
-
+    grid-template-areas:
+      "imagen"
+      "content";
   }
+  picture,
+  .gatsby-image-wrappe,
+  source,
   img {
     grid-area: imagen;
     width: 100%;
@@ -75,35 +77,18 @@ const H3 = tw.h3`
   font-muli text-gray-900 m-0
 `;
 
-
 const query = graphql`
   query {
-en: allMdx(filter: {frontmatter: {favorite: {eq: true}, lang: {eq: "en"}}}) {
+    en: allMdx(
+      filter: { frontmatter: { favorite: { eq: true }, lang: { eq: "en" } } }
+    ) {
       nodes {
-id
+        id
         slug
         frontmatter {
           banner {
             childImageSharp {
-              fluid{
-src
-              }
-            }
-          }
-          title
-          description
-          keywords
-        }
-      }
-    }
-es: allMdx(filter: {frontmatter: {favorite: {eq: true}, lang: {ne: "en"}}}) {
-      nodes {
-id
-        slug
-        frontmatter {
-          banner {
-            childImageSharp {
-              fluid{
+              fluid {
                 src
               }
             }
@@ -114,46 +99,65 @@ id
         }
       }
     }
-
+    es: allMdx(
+      filter: { frontmatter: { favorite: { eq: true }, lang: { ne: "en" } } }
+    ) {
+      nodes {
+        id
+        slug
+        frontmatter {
+          banner {
+            childImageSharp {
+              fluid(maxHeight: 200) {
+                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluidLimitPresentationSize
+              }
+            }
+          }
+          title
+          description
+          keywords
+        }
+      }
+    }
   }
-
-
 `;
 
-export const ArticlesList = ({ articles}) => {
- return (
-      <Articles>
-        {articles.map((post) => {
-          const keywords = post.frontmatter.keywords
-            .map((item) => `#${item.trim()}`)
-            .join(", ");
-          return (
-            <Card href={`/${post.slug}`} key={post.id}>
-              {post.frontmatter.banner?.childImageSharp?.fluid==null ? null :
-              <img
-                src={post.frontmatter.banner.childImageSharp.fluid.src}
-                alt={post.frontmatter.alt}
-                />}
-              <div>
-                <H3>{post.frontmatter.title}</H3>
-                <p>{post.frontmatter.description}</p>
-                <span>{post.frontmatter.date}</span>
-                <span>{keywords}</span>
-              </div>
-            </Card>
-          );
-        })}
-      </Articles>
- )
-}
+export const ArticlesList = ({ articles }) => {
+    return (
+        <Articles>
+            {articles.map((post) => {
+                const keywords = post.frontmatter.keywords
+                    .map((item) => `#${item.trim()}`)
+                    .join(", ");
+                return (
+                    <Card href={`/${post.slug}`} key={post.id}>
+                        {post.frontmatter.banner?.childImageSharp?.fluid == null ? null : (
+                            <Img
+                                fluid={post.frontmatter.banner.childImageSharp.fluid}
+                                alt={post.frontmatter.alt}
+                            />
+                        )}
+                        <div>
+                            <H3>{post.frontmatter.title}</H3>
+                            <p>{post.frontmatter.description}</p>
+                            <span>{post.frontmatter.date}</span>
+                            <span>{keywords}</span>
+                        </div>
+                    </Card>
+                );
+            })}
+        </Articles>
+    );
+};
 
 const title = {
-  es: `Escribo algunos Artículos`,
-  en: `I write some Articles`,
-}
+    es: `Escribo algunos Artículos`,
+    en: `I write some Articles`,
+};
 
 const copy = {
-  es: `Un digital garden/jardín digital es un espacio digital lleno de
+    es: `Un digital garden/jardín digital es un espacio digital lleno de
                     ideas interconectadas e información recolectada, curada y siempre en
                     progreso durante el tiempo. Esto implica que dentro de este espacio
                     existirá contenido que aún no "florece" o incluso que se encuentra
@@ -163,7 +167,7 @@ const copy = {
 
         Esta es mi selección personal de esas
                     semillas.`,
-  en: `A digital garden is a digital space full of
+    en: `A digital garden is a digital space full of
                      interconnected ideas and information collected, curated and always in
                      progress over time. This implies that within this space
                      there will be content that is not yet "blooming" or even found
@@ -172,20 +176,19 @@ const copy = {
                      web development in general.
 
          This is my personal selection of those
-                     seeds.`
-}
+                     seeds.`,
+};
 
-export default function ArticlesSection({ lang = 'es'}) {
-  const { es, en } = useStaticQuery(query);
+export default function ArticlesSection({ lang = "es" }) {
+    const { es, en } = useStaticQuery(query);
 
-  return (
-    <Section>
-      <div>
-        <H2>{title[lang]}</H2>
-      </div>
-      <Copy>{copy[lang]}
-      </Copy>
-      <ArticlesList articles={lang === 'es'? es.nodes : en.nodes} />
-      </Section>
-  );
+    return (
+        <Section>
+            <div>
+                <H2>{title[lang]}</H2>
+            </div>
+            <Copy>{copy[lang]}</Copy>
+            <ArticlesList articles={lang === "es" ? es.nodes : en.nodes} />
+        </Section>
+    );
 }
