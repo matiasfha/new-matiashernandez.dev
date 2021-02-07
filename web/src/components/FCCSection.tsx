@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -34,16 +34,15 @@ const Articles = tw.div`
 `;
 
 const Card = styled.a`
-  ${tw`w-full grid mb-4 gap-8 no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-4`};
+  ${tw`w-full grid mb-2 gap-6 no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-2`};
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";
   ${bpMaxSM} {
-
     grid-template-columns: 1fr;
     grid-template-rows: 100px 1fr;
-    grid-template-areas: "imagen"
-  "content";
-
+    grid-template-areas:
+      "imagen"
+      "content";
   }
   img {
     grid-area: imagen;
@@ -77,77 +76,75 @@ const H3 = tw.h3`
 `;
 
 const query = graphql`
-query {
-  allFeedFccEs {
-    nodes {
-      contentSnippet
-      id
-      image {
-        attrs {
-          url
+  query {
+    allFeedFccEs {
+      nodes {
+        contentSnippet
+        id
+        image {
+          attrs {
+            url
+          }
         }
+        link
+        isoDate(formatString: "DD/MM/YYYY")
+        title
       }
-      link
-      isoDate(formatString: "DD/MM/YYYY")
-      title
+    }
+    allFeedFccEn {
+      nodes {
+        contentSnippet
+        id
+        image {
+          attrs {
+            url
+          }
+        }
+        link
+        isoDate(formatString: "DD/MM/YYYY")
+        title
+      }
     }
   }
-  allFeedFccEn {
-    nodes {
-      contentSnippet
-      id
-      image {
-        attrs {
-          url
-        }
-      }
-      link
-      isoDate(formatString: "DD/MM/YYYY")
-      title
-    }
-  }
-}
 `;
 
 const title = {
- es: `También escribo en [Freecodecamp](http://freecodecamp.org/espanol/news/author/matias-hernandez)`,
-en: `I also write on [Freecodecamp](http://freecodecamp.org/news/author/matias-hernandez)`
-}
+    es: `También escribo en [Freecodecamp](http://freecodecamp.org/espanol/news/author/matias-hernandez)`,
+    en: `I also write on [Freecodecamp](http://freecodecamp.org/news/author/matias-hernandez)`,
+};
 
 const copy = {
-  es: `Freecodecamp es una organización sin fines de lucro para la enseñanza de desarrollo de software y formación de futuros desarrolladores.
+    es: `Freecodecamp es una organización sin fines de lucro para la enseñanza de desarrollo de software y formación de futuros desarrolladores.
 Tengo el honor y agrade de escribir para su editorial en español e ingles.`,
-  en: `Freecodecamp is a non-profit organization for teaching software development and training future developers.
-I have the honor and pleasure to write for your editorial in Spanish and English.`
-}
+    en: `Freecodecamp is a non-profit organization for teaching software development and training future developers.
+I have the honor and pleasure to write for your editorial in Spanish and English.`,
+};
 
-export default function FreecodecampSection({ lang = 'es' }) {
-  const { allFeedFccEs, allFeedFccEn } = useStaticQuery(query);
-  const data = lang === 'es' ? allFeedFccEs : allFeedFccEn
-  return (
-    <Section>
-      <div>
-        <H2><ReactMarkdown>{title[lang]}</ReactMarkdown></H2>
-      </div>
-      <Copy>{copy[lang]}
-      </Copy>
-      <Articles>
-        {data.nodes.map(post => {
-          return (
-            <Card href={post.link} key={post.id}>
-              <img
-                src={post.image?.attrs?.url}
-                alt={post.title}
-              />
-              <div>
-                <H3>{post.title}</H3>
-                <p>{post.contentSnippet}</p>
-                <span>{post.isoDate}</span>
-              </div>
-            </Card>
-          );
-        })}
-      </Articles>
-    </Section>
-  );
+export default function FreecodecampSection({ lang = "es" }) {
+    const { allFeedFccEs, allFeedFccEn } = useStaticQuery(query);
+    const data = lang === "es" ? allFeedFccEs : allFeedFccEn;
+    return (
+        <Section>
+            <div>
+                <H2>
+                    <ReactMarkdown>{title[lang]}</ReactMarkdown>
+                </H2>
+            </div>
+            <Copy>{copy[lang]}</Copy>
+            <Articles>
+                {data.nodes.map((post) => {
+                    return (
+                        <Card href={post.link} key={post.id}>
+                            <img src={post.image?.attrs?.url} alt={post.title} />
+                            <div>
+                                <H3>{post.title}</H3>
+                                <p>{post.contentSnippet}</p>
+                                <span>{post.isoDate}</span>
+                            </div>
+                        </Card>
+                    );
+                })}
+            </Articles>
+        </Section>
+    );
 }

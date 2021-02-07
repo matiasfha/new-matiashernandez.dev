@@ -11,7 +11,7 @@ import { bpMaxSM } from "@/lib/breakpoints";
 
 const Grid = styled.div`
   ${tw`max-w-screen-lg mx-auto grid grid-cols-1 pt-20`}
-  grid-template-rows: minmax(250px,500px) minmax(130px,200px) 1fr 100px;
+  grid-template-rows: minmax(250px,500px) minmax(200px,220px) 1fr 100px;
   grid-template-areas:
     "img"
     "title"
@@ -22,7 +22,8 @@ const Grid = styled.div`
 
 const ImgContainer = styled.div`
   grid-area: img;
-  width: 720px;
+  max-width: 640px;
+  width: 640px;
   justify-self: center;
   ${bpMaxSM} {
     width: 100%;
@@ -30,6 +31,7 @@ const ImgContainer = styled.div`
 `;
 const TitleContainer = styled.div`
   grid-area: title;
+  ${tw`pb-8 md:pb-0`};
   p {
     ${tw`font-muli text-sm text-gray-700 m-0`}
   }
@@ -80,7 +82,7 @@ export default function PostTemplate({ data: { mdx } }) {
           <Footer>
             <p>
               <a
-                href={`https://github.com/matiasfha/new-matiashernandez.dev/tree/master/web/content/posts/${mdx.frontmatter.slug}.mdx`}
+                href={`https://github.com/matiasfha/new-matiashernandez.dev/tree/master/web/content/posts/${mdx.fields.slug}.mdx`}
               >
                 Edita esto en github
               </a>
@@ -88,7 +90,7 @@ export default function PostTemplate({ data: { mdx } }) {
             <p>
               Comparte en
               <TwitterShareButton
-                url={`https://matiashernandez.dev/${mdx.frontmatter.slug}`}
+                url={`https://matiashernandez.dev/${mdx.fields.slug}`}
                 title={mdx.frontmatter.title}
                 via="matiasfha"
               >
@@ -113,10 +115,9 @@ export const pageQuery = graphql`
         description
         date(formatString: "MMMM DD, YYYY")
         bannerCredit
-        slug
         banner {
           childImageSharp {
-            fluid(maxWidth: 920) {
+            fluid(maxWidth: 720) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }

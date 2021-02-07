@@ -33,7 +33,7 @@ const Articles = tw.div`
 `;
 
 const Card = styled.a`
-  ${tw`w-full grid mb-4 gap-8 no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-4`};
+  ${tw`w-full grid mb-2 gap-6 no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-2`};
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";
   ${bpMaxSM} {
@@ -44,7 +44,7 @@ const Card = styled.a`
       "content";
   }
   picture,
-  .gatsby-image-wrappe,
+  .gatsby-image-wrapper,
   source,
   img {
     grid-area: imagen;
