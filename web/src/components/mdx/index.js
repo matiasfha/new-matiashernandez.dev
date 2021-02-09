@@ -12,7 +12,7 @@ const UL = twin.ul`font-muli text-lg text-gray-900
 `;
 
 const A = twin.a`
-no-underline transform transition duration-300 inline-block font-muli font-bold text-blue-700  hover:text-blue-800
+no-underline transform transition duration-300 inline-block font-muli font-bold text-blue-700 hover:text-blue-800 dark:text-sepia-400 dark:hover:text-sepia-500
 `;
 export const MDXLayoutComponents = {
   h1: (props) => <Title {...props} />,

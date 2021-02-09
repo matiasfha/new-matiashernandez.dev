@@ -6,10 +6,10 @@ import Egghead from "../../assets/egghead.svg";
 import Github from "../../assets/github-brands.svg";
 
 const Container = tw.div`
-text-center font-muli text-gray-500 py-4 w-3/5 h-80 text-xl mx-auto my-0 border-t-2 border-gray-300`;
+text-center font-muli text-gray-500 dark:text-gray-100 w-3/5 h-80 text-xl mx-auto my-0 border-t-2 border-gray-300`;
 
 const Social = styled.div`
-  ${tw`flex flex-row items-center justify-start w-48 mx-auto my-0 py-4`}
+  ${tw`flex flex-row items-center justify-start w-48 mx-auto my-0`}
   a {
     ${tw`no-underline w-40`}
     svg {
@@ -32,9 +32,9 @@ const Button = styled.button`
 `;
 
 const MadeWith = styled.p`
-  ${tw`text-sm pt-8`}
+  ${tw`text-sm mt-8 dark:text-gray-100`}
   a {
-    ${tw`text-blue-900 no-underline`}
+    ${tw`text-blue-900 no-underline dark:text-sepia-400`}
   }
 `;
 export const EmailSignup = ({ }) => {
@@ -80,8 +80,12 @@ const Footer = () => {
             <p style={{ fontSize: "2rem" }}>🎉 📩 🎉</p>
             <EmailSignup />
             <MadeWith>
-                Hecho full JamStack con <a href="">Gatsby</a>, <a href="">Sanity.io</a>.
-        Hosteado en <a href="">Netlify</a>.
+                🧡 Hecho full JamStack con <a href="http://gatsbyjs.com/">Gatsby</a>,{" "}
+                <a href="https://www.sanity.io">Sanity.io</a>. Hosteado en{" "}
+                <a href="https://www.netlify.com">Netlify</a>. Hermoseado gracias a{" "}
+                <a href="http://tailwindcss.com/">TailwindCSS</a>. Gracias a{" "}
+                <a href="https://twitter.com/benrogerson">@benrogerson</a> por la genial{" "}
+                <a href="https://github.com/ben-rogerson/twin.macro">twin.macro</a> 🤘
       </MadeWith>
         </Container>
     );

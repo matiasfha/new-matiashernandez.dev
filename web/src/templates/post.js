@@ -11,7 +11,7 @@ import { bpMaxSM } from "@/lib/breakpoints";
 
 const Grid = styled.div`
   ${tw`max-w-screen-lg mx-auto grid grid-cols-1 pt-20`}
-  grid-template-rows: minmax(250px,500px) minmax(200px,220px) 1fr 100px;
+  grid-template-rows: minmax(250px,480px) minmax(200px,220px) 1fr 100px;
   grid-template-areas:
     "img"
     "title"
@@ -22,9 +22,8 @@ const Grid = styled.div`
 
 const ImgContainer = styled.div`
   grid-area: img;
-  max-width: 640px;
-  width: 640px;
   justify-self: center;
+  width: 640px;
   ${bpMaxSM} {
     width: 100%;
   }
@@ -33,11 +32,11 @@ const TitleContainer = styled.div`
   grid-area: title;
   ${tw`pb-8 md:pb-0`};
   p {
-    ${tw`font-muli text-sm text-gray-700 m-0`}
+    ${tw`font-muli text-sm text-gray-700 dark:text-gray-100 m-0`}
   }
 `;
 const H1 = styled.h1`
-  ${tw`font-muli text-gray-900 text-4xl text-left justify-center pt-8 mb-0`}
+  ${tw`font-muli text-gray-900 dark:text-gray-100 text-4xl text-left justify-center pt-8 mb-0`}
 `;
 
 const Content = styled.div`
@@ -50,12 +49,12 @@ const Footer = styled.div`
   padding: 0rem 0rem 1rem;
   justify-self: self-end;
   a {
-    ${tw`no-underline text-blue-800 font-muli`}
+    ${tw`no-underline text-blue-800 dark:text-sepia-400 font-muli`}
   }
   p {
-    ${tw`text-gray-700 font-muli`}
+    ${tw`text-gray-700 dark:text-gray-100 font-muli`}
     span {
-      ${tw`no-underline text-blue-800 font-muli ml-2`}
+      ${tw`no-underline text-blue-800 dark:text-sepia-400 font-muli ml-2`}
     }
   }
 `;
@@ -117,7 +116,7 @@ export const pageQuery = graphql`
         bannerCredit
         banner {
           childImageSharp {
-            fluid(maxWidth: 720) {
+            fluid(maxWidth: 640) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }

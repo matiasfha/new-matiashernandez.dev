@@ -6,19 +6,19 @@ import { Buzzsprout } from "mdx-embed";
 import DefaultGrid from "@/components/Grid";
 
 const Section = styled(DefaultGrid)`
-  padding: 2rem 0;
   position: relative;
   grid-template-rows: minmax(42px, 80px) minmax(60px, 80px) min(400px, 1fr);
   margin-top: 2rem;
   p {
-    ${tw`text-gray-900`}
+    ${tw`text-gray-900 dark:text-gray-100`}
   }
 `;
 const H2 = styled.h2`
-  ${tw`text-gray-900 text-xl md:text-2xl font-muli font-bold text-left inline-block`}
+  ${tw`text-gray-900 dark:text-gray-100 text-xl md:text-2xl font-muli font-bold text-left inline-block`}
 `;
 const A = styled.a`
-  ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`}
+  ${tw`no-underline transform transition duration-300 inline-block text-xl md:text-2xl font-muli font-bold px-2 text-blue-700 border-b-2 hover:scale-110 hover:text-blue-800`};
+  ${tw`dark:text-sepia-400 dark:hover:text-sepia-500`}
 `;
 
 const Copy = tw.p`
@@ -73,41 +73,43 @@ const query = graphql`
   }
 `;
 export default function PodcastSection() {
-  const {
-    allPodcastEpisodeCafeConTech,
-    allPodcastEpisodeControlRemoto,
-  } = useStaticQuery(query);
-  const cafeConTech = new URL(
-    allPodcastEpisodeCafeConTech.nodes[0].audio_url
-  ).pathname
-    .slice(1)
-    .replace(/\.[^/.]+$/, "");
-  const controlRemoto = new URL(
-    allPodcastEpisodeControlRemoto.nodes[0].audio_url
-  ).pathname
-    .slice(1)
-    .replace(/\.[^/.]+$/, "");
-  return (
-    <Section>
-      <div>
-        <H2> Podcasts
-        <A href="https://controlremoto.io">Control Remoto</A>
-        y <A href="http://www.cafecon.tech">Café con Tech </A>
-      </H2>
-      </div>
-      <Copy>
-        Me encanta enseñar y tuve la gran oportunidad de ser parte de Egghead.
-        Las lecciones y cursos en egghead son el primer y quizá más importante
-        material audiviosual que realizo
+    const {
+        allPodcastEpisodeCafeConTech,
+        allPodcastEpisodeControlRemoto,
+    } = useStaticQuery(query);
+    const cafeConTech = new URL(
+        allPodcastEpisodeCafeConTech.nodes[0].audio_url
+    ).pathname
+        .slice(1)
+        .replace(/\.[^/.]+$/, "");
+    const controlRemoto = new URL(
+        allPodcastEpisodeControlRemoto.nodes[0].audio_url
+    ).pathname
+        .slice(1)
+        .replace(/\.[^/.]+$/, "");
+    return (
+        <Section>
+            <div>
+                <H2>
+                    {" "}
+          Podcasts
+          <A href="https://controlremoto.io">Control Remoto</A>y{" "}
+                    <A href="http://www.cafecon.tech">Café con Tech </A>
+                </H2>
+            </div>
+            <Copy>
+                Me encanta enseñar y tuve la gran oportunidad de ser parte de Egghead.
+                Las lecciones y cursos en egghead son el primer y quizá más importante
+                material audiviosual que realizo
       </Copy>
-      <Podcasts>
-        <Card2>
-          <Buzzsprout buzzsproutId={cafeConTech} />
-        </Card2>
-        <Card2>
-          <Buzzsprout buzzsproutId={controlRemoto} />
-        </Card2>
-      </Podcasts>
-    </Section>
-  );
+            <Podcasts>
+                <Card2>
+                    <Buzzsprout buzzsproutId={cafeConTech} />
+                </Card2>
+                <Card2>
+                    <Buzzsprout buzzsproutId={controlRemoto} />
+                </Card2>
+            </Podcasts>
+        </Section>
+    );
 }

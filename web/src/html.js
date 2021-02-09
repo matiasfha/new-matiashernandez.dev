@@ -13,20 +13,18 @@ const HTML = (props) => {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
-      </head>
-      <>
         <GlobalStyles />
-        <body {...props.bodyAttributes}>
-          {props.preBodyComponents}
-          <noscript>This site runs best with JavaScript enabled.</noscript>
-          <div
-            key="body"
-            id="___gatsby"
-            dangerouslySetInnerHTML={{ __html: props.body }}
-          />
-          {props.postBodyComponents}
-        </body>
-      </>
+      </head>
+      <body {...props.bodyAttributes}>
+        {props.preBodyComponents}
+        <noscript>This site runs best with JavaScript enabled.</noscript>
+        <div
+          key="body"
+          id="___gatsby"
+          dangerouslySetInnerHTML={{ __html: props.body }}
+        />
+        {props.postBodyComponents}
+      </body>
     </html>
   );
 };
