@@ -28,6 +28,11 @@ const Gallery = tw.div`
 const Card = styled.div`
   ${tw`w-full transform transition duration-300 md:hover:shadow-lg md:hover:scale-110`};
   max-height: 160px;
+  ${bpMaxSM} {
+    .gatsby-image-wrapper {
+      margin: 0 auto;
+    }
+  }
 `;
 const Copy = tw.p`
   font-muli text-sm md:text-base

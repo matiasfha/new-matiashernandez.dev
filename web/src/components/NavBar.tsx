@@ -12,18 +12,22 @@ const Nav = tw.nav`
 const Content = tw(Grid)`
   md:grid-flow-col grid-rows-2 md:grid-rows-1 justify-between md:grid-cols-2 md:pt-2
 `;
+
+const LinkLogo = tw(Link)`
+hidden md:block
+`;
 const LogoImage = tw.img`
   h-8 md:h-12 w-8 md:w-12 hidden md:block mt-4
 `;
 
 const Menu = styled.ul`
-  ${tw`self-end text-white justify-self-end list-none flex flex-row`};
+  ${tw`self-end text-white items-center justify-self-end list-none flex flex-row w-full justify-end`};
   li {
-    ${tw`mt-2`}
+    ${tw`px-2 md:mt-2 md:px-0 `}
   }
 `;
 const MenuItem = styled(Link)`
-  ${tw`transition duration-150 ease-in-out text-gray-900 hover:text-gray-600  no-underline text-sm md:text-base px-2 md:px-6 font-muli`}
+  ${tw`transition duration-150 ease-in-out text-gray-900 hover:text-gray-600  no-underline text-sm md:text-base px-0 md:px-6 font-muli`}
   ${tw`dark:text-gray-100 dark:hover:text-gray-400`};
   text-decoration-color: rgb(119, 124, 155);
   text-rendering: optimizeLegibility;
@@ -127,9 +131,9 @@ const NavBar: React.FC = ({ lang = "es" }) => {
     return (
         <Nav>
             <Content>
-                <Link to={home.link}>
+                <LinkLogo to={home.link}>
                     <LogoImage src={logo} alt="Logo Matias Hernandez" />
-                </Link>
+                </LinkLogo>
                 <Menu>
                     <HomeItem to={home.link}>
                         <span>Home</span>
@@ -141,7 +145,9 @@ const NavBar: React.FC = ({ lang = "es" }) => {
                             </li>
                         );
                     })}
-                    <DarkModeToggle />
+                    <li>
+                        <DarkModeToggle />
+                    </li>
                 </Menu>
             </Content>
         </Nav>

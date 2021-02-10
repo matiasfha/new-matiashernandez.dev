@@ -44,7 +44,7 @@ const GlobalStyle = css`
 `;
 
 const Content = tw.div`
-max-w-full max-h-full relative
+max-w-full max-h-full relative px-4 md:px-2
 `;
 type PropsT = {
     site: {

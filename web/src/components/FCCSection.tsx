@@ -48,6 +48,10 @@ const Card = styled.a`
   img {
     grid-area: imagen;
     width: 100%;
+    ${bpMaxSM} {
+      width: 90%;
+      margin: 0 auto;
+    }
     max-height: 200px;
   }
   span:first-of-type {
