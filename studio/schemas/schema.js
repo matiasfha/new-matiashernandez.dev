@@ -9,6 +9,7 @@ import blockContent from "./blockContent";
 import siteSettings from "./siteSettings";
 import aboutPage from "./about";
 import newsletterPage from "./newsletter";
+import thankyouPage from "./thankyou";
 import talks from "./talks";
 import menuItem from "./menuItem";
 import navbar from "./navbar";
@@ -27,6 +28,7 @@ export default createSchema({
     aboutPage,
     newsletterPage,
     talks,
+    thankyouPage,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent

@@ -67,7 +67,8 @@ exports.onCreateNode = async ({
 }) => {
   if (
     node.internal.type === "SanityAboutPage" ||
-    node.internal.type === "SanityNewsletterPage"
+    node.internal.type === "SanityNewsletterPage" ||
+    node.internal.type === "SanityThankyouPage"
   ) {
     let mdxContent = node.content;
 
@@ -122,6 +123,7 @@ exports.onCreateNode = async ({
 
   if (node.internal.type === "Egghead" || node.internal.type === "EggheadEn") {
     try {
+      console.log(node);
       const fileNode = await createRemoteFileNode({
         url: node.ogImage.url,
         parentNodeId: node.id,
@@ -300,6 +302,37 @@ const NewsletterPage = async (graphql, createPage, reporter) => {
   });
 };
 
+const ThankYouPage = async (graphql, createPage, reporter) => {
+  const result = await graphql(`
+    query {
+      allMdxSanityThankyouPage {
+        edges {
+          node {
+            childMdx {
+              body
+            }
+            frontmatter {
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const { node } = result.data.allMdxSanityThankyouPage.edges[0];
+  createPage({
+    path: `thankyou`,
+    component: path.resolve(`./src/templates/page.js`),
+    context: {
+      pagePath: `thankyou`,
+      locale: "es",
+      id: node.id,
+      ...node,
+    },
+  });
+};
 const BlogPage = async (graphql, createPage, reporter) => {
   const result = await graphql(`
     query {
@@ -343,5 +376,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   await getEnglishPosts(graphql, actions.createPage, reporter);
   await AboutPage(graphql, actions.createPage, reporter);
   await NewsletterPage(graphql, actions.createPage, reporter);
+  await ThankYouPage(graphql, actions.createPage, reporter);
   await BlogPage(graphql, actions.createPage, reporter);
 };

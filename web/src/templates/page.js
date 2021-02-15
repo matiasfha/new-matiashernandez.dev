@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import DefaultGrid from "@/components/Grid";
 
 const Grid = styled(DefaultGrid)`
+  ${tw`mt-4 md:mt-8`}
   ul {
     ${tw`font-muli text-lg text-gray-900 dark:text-gray-100`}
   }
