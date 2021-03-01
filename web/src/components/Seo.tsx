@@ -14,9 +14,14 @@ export type FrontMatterT = {
 export type Props = {
     frontmatter?: FrontMatterT;
     isBlogPost?: boolean;
+    lang?: string;
 };
 
-const Seo: React.FC<Props> = ({ frontmatter, isBlogPost = false }: Props) => {
+const Seo: React.FC<Props> = ({
+    frontmatter,
+    isBlogPost = false,
+    lang = "es",
+}: Props) => {
     const ogImage = getOgImage({
         title: frontmatter.title,
         tags: frontmatter.keywords
@@ -32,7 +37,7 @@ const Seo: React.FC<Props> = ({ frontmatter, isBlogPost = false }: Props) => {
     const keywords = frontmatter.keywords;
     return (
         <Helmet title={title}>
-            <html lang="es" />
+            <html lang={lang} />
             <title>{title}</title>
             <meta property="og:url" content={frontmatter.siteUrl} />
             <meta property="og:title" content={title} />

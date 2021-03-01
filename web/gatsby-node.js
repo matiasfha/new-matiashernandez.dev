@@ -123,7 +123,6 @@ exports.onCreateNode = async ({
 
   if (node.internal.type === "Egghead" || node.internal.type === "EggheadEn") {
     try {
-      console.log(node);
       const fileNode = await createRemoteFileNode({
         url: node.ogImage.url,
         parentNodeId: node.id,
@@ -239,6 +238,16 @@ const getEnglishPosts = async (graphql, createPage, reporter) => {
 const AboutPage = async (graphql, createPage, reporter) => {
   const result = await graphql(`
     query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          keywords
+          siteUrl
+          image
+        }
+      }
       allMdxSanityAboutPage {
         edges {
           node {
@@ -265,6 +274,10 @@ const AboutPage = async (graphql, createPage, reporter) => {
         id: node.id,
         pagePath: `${localePath}/about`,
         ...node,
+        frontmatter: {
+          ...result.data.site.siteMetadata,
+          keywords: result.data.site.siteMetadata.keywords.join(", "),
+        },
       },
     });
   });
@@ -273,6 +286,16 @@ const AboutPage = async (graphql, createPage, reporter) => {
 const NewsletterPage = async (graphql, createPage, reporter) => {
   const result = await graphql(`
     query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          keywords
+          siteUrl
+          image
+        }
+      }
       allMdxSanityNewsletterPage {
         edges {
           node {
@@ -298,6 +321,10 @@ const NewsletterPage = async (graphql, createPage, reporter) => {
       locale: "es",
       id: node.id,
       ...node,
+      frontmatter: {
+        ...result.data.site.siteMetadata,
+        keywords: result.data.site.siteMetadata.keywords.join(", "),
+      },
     },
   });
 };
@@ -305,6 +332,16 @@ const NewsletterPage = async (graphql, createPage, reporter) => {
 const ThankYouPage = async (graphql, createPage, reporter) => {
   const result = await graphql(`
     query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          keywords
+          siteUrl
+          image
+        }
+      }
       allMdxSanityThankyouPage {
         edges {
           node {
@@ -330,6 +367,10 @@ const ThankYouPage = async (graphql, createPage, reporter) => {
       locale: "es",
       id: node.id,
       ...node,
+      frontmatter: {
+        ...result.data.site.siteMetadata,
+        keywords: result.data.site.siteMetadata.keywords.join(", "),
+      },
     },
   });
 };

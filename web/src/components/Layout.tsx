@@ -63,7 +63,7 @@ const Layout: React.FC<PropsT> = ({
 }: PropsT) => {
     return (
         <ThemeProvider>
-            <Seo frontmatter={frontmatter} isBlogPost={isBlogPost} />
+            <Seo frontmatter={frontmatter} isBlogPost={isBlogPost} lang={lang} />
             <Global styles={GlobalStyle} />
 
             <div>

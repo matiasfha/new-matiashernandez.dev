@@ -5,9 +5,13 @@ import EggheadSection from "@/components/EggheadSection";
 import ArticlesSection from "@/components/ArticlesSection";
 import FCCSection from "@/components/FCCSection";
 
-export default function Index() {
+export default function Index({ data: { site } }) {
+  const frontmatter = {
+    ...site.siteMetadata,
+    keywords: site.siteMetadata.keywords.join(", "),
+  };
   return (
-    <Layout lang="en">
+    <Layout frontmatter={frontmatter} lang="en">
       <Hero lang="en" />
       <EggheadSection lang="en" />
       <FCCSection lang="en" />
@@ -15,3 +19,18 @@ export default function Index() {
     </Layout>
   );
 }
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+        keywords
+        siteUrl
+        image
+      }
+    }
+  }
+`;
