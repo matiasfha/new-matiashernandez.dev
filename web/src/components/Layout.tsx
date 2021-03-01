@@ -52,15 +52,18 @@ type PropsT = {
     };
     frontmatter: FrontMatterT;
     children: ReactChildren;
+    isBlogPost: boolean;
+    lang: "es" | "en";
 };
 const Layout: React.FC<PropsT> = ({
     frontmatter = {},
     children,
+    isBlogPost = false,
     lang = "es",
 }: PropsT) => {
     return (
         <ThemeProvider>
-            <Seo frontmatter={frontmatter} />
+            <Seo frontmatter={frontmatter} isBlogPost={isBlogPost} />
             <Global styles={GlobalStyle} />
 
             <div>

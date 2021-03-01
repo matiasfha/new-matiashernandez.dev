@@ -59,10 +59,13 @@ const Footer = styled.div`
   }
 `;
 export default function PostTemplate({ data: { mdx } }) {
+  const frontmatter = {
+    ...mdx.frontmatter,
+    keywords: mdx.frontmatter.keywords.join(", "),
+  };
   return (
     <>
-      <Seo frontmatter={mdx.frontmatter} />
-      <Layout>
+      <Layout frontmatter={frontmatter} isBlogPost>
         <Grid>
           <ImgContainer>
             <Img

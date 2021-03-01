@@ -5,8 +5,12 @@ import Grid from "@/components/Grid";
 import { ArticlesList } from "@/components/ArticlesSection";
 
 export default function BlogTemplate({ children, pageContext }) {
+  const frontmatter = {
+    ...pageContext.frontmatter,
+    title: `${pageContext.frontmatter.title} | Listado de Artículos`,
+  };
   return (
-    <Layout>
+    <Layout frontmatter={frontmatter}>
       <Grid>
         <ArticlesList articles={pageContext.nodes} />
       </Grid>

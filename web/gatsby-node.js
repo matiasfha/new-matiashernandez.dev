@@ -336,6 +336,16 @@ const ThankYouPage = async (graphql, createPage, reporter) => {
 const BlogPage = async (graphql, createPage, reporter) => {
   const result = await graphql(`
     query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          keywords
+          siteUrl
+          image
+        }
+      }
       allMdx(
         filter: { frontmatter: { tag: { ne: "en" } } }
         sort: { order: DESC, fields: frontmatter___date }
@@ -367,6 +377,10 @@ const BlogPage = async (graphql, createPage, reporter) => {
       pagePath: "es",
       locale: "es",
       nodes: nodes.filter((item) => item.slug != null),
+      frontmatter: {
+        ...result.data.site.siteMetadata,
+        keywords: result.data.site.siteMetadata.keywords.join(", "),
+      },
     },
   });
 };
