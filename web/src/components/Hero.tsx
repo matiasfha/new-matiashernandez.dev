@@ -9,7 +9,7 @@ import photo from "@/images/photo.jpg";
 import { bpMaxSM } from "@/lib/breakpoints";
 
 const Social = styled.div`
-  ${tw`flex flex-row items-center justify-start w-40 md:w-48`}
+  ${tw`flex flex-row items-center justify-start w-40 md:w-48 mt-4`}
   a {
     ${tw`no-underline h-40 w-40`}
     svg {
@@ -18,10 +18,10 @@ const Social = styled.div`
   }
 `;
 const Container = styled.div`
-  ${tw`max-w-full h-60 mt-8`}
+  ${tw`max-w-full h-60 mt-8 mb-4`}
   p {
-    ${tw`text-gray-900 text-sm md:text-base`};
-    ${tw`dark:text-gray-100`};
+    ${tw`text-gray-900 text-sm md:text-lg`};
+    ${tw`dark:text-gray-200`};
     a {
       ${tw`text-blue-500 dark:text-sepia-400`}
     }

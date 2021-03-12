@@ -9,7 +9,7 @@ const Container = tw.div`
 text-center font-muli text-gray-500 dark:text-gray-100 w-3/5 h-80 text-xl mx-auto my-0 border-t-2 border-gray-300`;
 
 const Social = styled.div`
-  ${tw`flex flex-row items-center justify-start w-48 mx-auto my-0`}
+  ${tw`flex flex-row items-center justify-start w-48 mx-auto mb-0 mt-8`}
   a {
     ${tw`no-underline w-40`}
     svg {
@@ -19,7 +19,7 @@ const Social = styled.div`
 `;
 
 const Input = styled.input`
-  ${tw`w-60 h-5 shadow rounded border-0 p-3 border-2 border-solid border-gray-300 outline-none transition duration-300 text-base`}
+  ${tw`w-60 h-12 shadow rounded border-0 p-3 border-2 border-solid border-gray-300 outline-none transition duration-300 text-base`}
   &:hover {
     border-color: rgb(4, 67, 172);
   }
@@ -73,11 +73,14 @@ const Footer = () => {
                     <Github width="40px" height="40px" />
                 </a>
             </Social>
+            <br />
             <p>
                 Mantente al día con más Javascript, React, Typescript y otros temas de
                 interés
       </p>
+            <br />
             <p style={{ fontSize: "2rem" }}>🎉 📩 🎉</p>
+            <br />
             <EmailSignup />
             <MadeWith>
                 🧡 Hecho full JamStack con <a href="http://gatsbyjs.com/">Gatsby</a>,{" "}

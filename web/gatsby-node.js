@@ -375,41 +375,38 @@ const ThankYouPage = async (graphql, createPage, reporter) => {
   });
 };
 const BlogPage = async (graphql, createPage, reporter) => {
-  const result = await graphql(`
-    query {
-      site {
-        siteMetadata {
-          title
-          description
-          author
-          keywords
-          siteUrl
-          image
-        }
-      }
-      allMdx(
-        filter: { frontmatter: { tag: { ne: "en" } } }
-        sort: { order: DESC, fields: frontmatter___date }
-      ) {
-        nodes {
-          id
-          slug
-          frontmatter {
-            banner {
-              childImageSharp {
-                fluid(maxWidth: 320) {
-                  src
-                }
-              }
-            }
-            title
-            description
-            keywords
+  const result = await graphql(`{
+  site {
+    siteMetadata {
+      title
+      description
+      author
+      keywords
+      siteUrl
+      image
+    }
+  }
+  allMdx(
+    filter: {frontmatter: {tag: {ne: "en"}}}
+    sort: {order: DESC, fields: frontmatter___date}
+  ) {
+    nodes {
+      id
+      slug
+      frontmatter {
+        banner {
+          childImageSharp {
+            gatsbyImageData(width: 320, placeholder: BLURRED, layout: CONSTRAINED)
           }
         }
+        title
+        description
+        keywords
       }
     }
-  `);
+  }
+}
+`);
   const { nodes } = result.data.allMdx;
   createPage({
     path: "blog",

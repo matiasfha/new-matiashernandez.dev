@@ -16,9 +16,10 @@ const isNetlifyProduction = NETLIFY_ENV === "production";
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
 module.exports = {
+  flags: { FAST_DEV: true, PRESERVE_WEBPACK_CACHE: true },
   pathPrefix: "/",
   siteMetadata: {
-    author: "Matías Henrández",
+    author: "Matías Hernández",
     siteUrl,
     seo: {
       canonicalUrl: siteUrl,
@@ -234,5 +235,6 @@ module.exports = {
         defer: true,
       },
     },
+    `gatsby-plugin-image`,
   ],
 };

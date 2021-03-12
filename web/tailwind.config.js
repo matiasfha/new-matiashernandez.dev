@@ -7,11 +7,13 @@ module.exports = {
       chivo: ["Chivo"],
       playfair: ["Playfair Display"],
       walsheim: ["GT Walsheim Regular"],
+      wotfard: ["Wotfard"],
     },
     extend: {
       colors: {
         red: "#FF2A5B",
         dark: "#111111",
+        bg: "rgb(14, 20, 27)",
         steel: {
           50: "#F4F7FA",
           200: "#DBEAF1",

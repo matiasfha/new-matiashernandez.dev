@@ -1,7 +1,8 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import DefaultGrid from "@/components/Grid";
 import { bpMaxSM } from "@/lib/breakpoints";
 
@@ -25,7 +26,7 @@ const H2 = styled.h1`
 `;
 
 const Copy = tw.p`
-font-muli text-sm md:text-base
+font-muli text-sm md:text-lg
 `;
 
 const Articles = tw.div`
@@ -87,7 +88,7 @@ const H3 = tw.h3`
 `;
 
 const query = graphql`
-  query {
+  {
     en: allMdx(
       filter: { frontmatter: { favorite: { eq: true }, lang: { eq: "en" } } }
     ) {
@@ -97,9 +98,7 @@ const query = graphql`
         frontmatter {
           banner {
             childImageSharp {
-              fluid {
-                src
-              }
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
             }
           }
           title
@@ -117,10 +116,7 @@ const query = graphql`
         frontmatter {
           banner {
             childImageSharp {
-              fluid(maxHeight: 200) {
-                ...GatsbyImageSharpFluid
-                ...GatsbyImageSharpFluidLimitPresentationSize
-              }
+              gatsbyImageData(height: 200, layout: CONSTRAINED)
             }
           }
           title
@@ -141,12 +137,13 @@ export const ArticlesList = ({ articles }) => {
                     .join(", ");
                 return (
                     <Card href={`/${post.slug}`} key={post.id}>
-                        {post.frontmatter.banner?.childImageSharp?.fluid == null ? null : (
-                            <Img
-                                fluid={post.frontmatter.banner.childImageSharp.fluid}
-                                alt={post.frontmatter.alt}
-                            />
-                        )}
+                        {post.frontmatter.banner?.childImageSharp?.gatsbyImageData ==
+                            null ? null : (
+                                <GatsbyImage
+                                    image={post.frontmatter.banner.childImageSharp.gatsbyImageData}
+                                    alt={post.frontmatter.title}
+                                />
+                            )}
                         <div>
                             <H3>{post.frontmatter.title}</H3>
                             <p>{post.frontmatter.description}</p>
@@ -161,7 +158,7 @@ export const ArticlesList = ({ articles }) => {
 };
 
 const title = {
-    es: `Escribo algunos Artículos`,
+    es: `Escribo algunos [Artículos](/blog)`,
     en: `I write some Articles`,
 };
 
@@ -194,7 +191,9 @@ export default function ArticlesSection({ lang = "es" }) {
     return (
         <Section>
             <div>
-                <H2>{title[lang]}</H2>
+                <H2>
+                    <ReactMarkdown>{title[lang]}</ReactMarkdown>
+                </H2>
             </div>
             <Copy>{copy[lang]}</Copy>
             <ArticlesList articles={lang === "es" ? es.nodes : en.nodes} />

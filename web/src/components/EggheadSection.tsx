@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import DefaultGrid from "@/components/Grid";
 import { bpMaxSM } from "@/lib/breakpoints";
 
@@ -35,7 +35,7 @@ const Card = styled.div`
   }
 `;
 const Copy = tw.p`
-  font-muli text-sm md:text-base
+  font-muli text-sm md:text-lg
 `;
 
 const query = graphql`
@@ -47,10 +47,11 @@ const query = graphql`
           ogUrl
           remoteImage {
             childImageSharp {
-              fluid(maxWidth: 320) {
-                ...GatsbyImageSharpFluid
-                ...GatsbyImageSharpFluidLimitPresentationSize
-              }
+              gatsbyImageData(
+                width: 320
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }
@@ -63,10 +64,11 @@ const query = graphql`
           ogUrl
           remoteImage {
             childImageSharp {
-              fluid(maxWidth: 320) {
-                ...GatsbyImageSharpFluid
-                ...GatsbyImageSharpFluidLimitPresentationSize
-              }
+              gatsbyImageData(
+                width: 320
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }
@@ -97,13 +99,11 @@ const EggheadSection = ({ lang = "es" }) => {
             <Copy>{copy[lang]}</Copy>
             <Gallery>
                 {edges.map(({ node }) => {
+                    const image = getImage(node.remoteImage);
                     return (
                         <Card key={node.ogUrl}>
                             <a href={node.ogUrl}>
-                                <Img
-                                    fluid={node.remoteImage.childImageSharp.fluid}
-                                    alt={node.ogTitle}
-                                />
+                                <GatsbyImage alt={node.ogTitle} image={image} />
                             </a>
                         </Card>
                     );

@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import tw, { styled, css } from "twin.macro";
 import { TwitterIcon, TwitterShareButton } from "react-share";
 import Seo from "@/components/Seo";
@@ -11,7 +11,7 @@ import { bpMaxSM } from "@/lib/breakpoints";
 
 const Grid = styled.div`
   ${tw`max-w-screen-lg mx-auto grid grid-cols-1 pt-20`}
-  grid-template-rows: minmax(250px,480px) minmax(200px,220px) 1fr 100px;
+  grid-template-rows: minmax(250px,300px) minmax(100px,190px) 1fr 100px;
   grid-template-areas:
     "img"
     "title"
@@ -24,15 +24,20 @@ const ImgContainer = styled.div`
   grid-area: img;
   justify-self: center;
   width: 640px;
+  max-height: 300px;
+
   ${bpMaxSM} {
     width: 100%;
+  }
+  .gatsby-image-wrapper {
+    max-height: 300px;
   }
 `;
 const TitleContainer = styled.div`
   grid-area: title;
-  ${tw`pb-8 md:pb-0`};
+  ${tw`pb-4 md:pb-0`};
   p {
-    ${tw`font-muli text-sm text-gray-700 dark:text-gray-100 m-0`}
+    ${tw`font-muli italic text-sm text-gray-600 dark:text-gray-200 m-0 pt-4`}
   }
 `;
 const H1 = styled.h1`
@@ -41,7 +46,10 @@ const H1 = styled.h1`
 
 const Content = styled.div`
   grid-area: content;
-  ${tw`font-muli text-left text-lg`}
+  ${tw`font-wotfard text-left text-lg`}
+  p, ul, h1, h2, h3 {
+    ${tw`max-w-screen-md mx-auto`}
+  }
 `;
 
 const Footer = styled.div`
@@ -68,15 +76,15 @@ export default function PostTemplate({ data: { mdx } }) {
       <Layout frontmatter={frontmatter} isBlogPost>
         <Grid>
           <ImgContainer>
-            <Img
-              fluid={mdx.frontmatter.banner.childImageSharp.fluid}
+            <GatsbyImage
+              image={mdx.frontmatter.banner.childImageSharp.gatsbyImageData}
               title={mdx.frontmatter.title}
               alt={mdx.frontmatter.title}
             />
           </ImgContainer>
           <TitleContainer>
             <H1>{mdx.frontmatter.title}</H1>
-            <p>{mdx.frontmatter.date}</p>
+            <p>Actualizado {mdx.frontmatter.date}</p>
           </TitleContainer>
           <Content>
             <MDXRenderer>{mdx.body}</MDXRenderer>
@@ -119,10 +127,7 @@ export const pageQuery = graphql`
         bannerCredit
         banner {
           childImageSharp {
-            fluid(maxWidth: 640) {
-              ...GatsbyImageSharpFluid
-              ...GatsbyImageSharpFluidLimitPresentationSize
-            }
+            gatsbyImageData(width: 640, layout: CONSTRAINED)
           }
         }
         keywords

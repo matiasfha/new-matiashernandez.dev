@@ -1,13 +1,13 @@
 ---
-date: 2020-11-27T01:10:37.000-03:00
+date: 2021-03-12T01:10:37.000-03:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1606450645/Undone_-_Submarine_pcyide.jpg
 keywords:
 - React Native
 - Animation
-- " animación"
-- " animacion"
-- " animaciones"
-- " como"
+- "animación"
+- "animacion"
+- animaciones
+- como
 tag: Seed
 title: Cómo Crear Animaciones con React Native
 description: 'Las animaciones son parte importante de cualquier aplicación ya que
@@ -27,7 +27,7 @@ En este post revisaremos como utilizar esta caracterísitca para crear tus propi
 
 TLDR:
 <EggheadLesson lessonId="react-native-crear-animacion-con-react-native-y-la-api-animated" />
->>>>>>> 23a23d73c52aff780c2d1b33c4ca009bc489e2ad
+
 # La API Animated
 
 React Native ofrece dos API complementarias: `Animated` para un control granular de valores específicos y `LayoutAnimation` para efectos animados globales en transacciones del layout.
@@ -48,7 +48,7 @@ Ambos métodos tienen una api similar aceptando casi los mismos parámetros
 
 Revisemos un ejemplo
 
-[https://snack.expo.io/@matiasfh/example-translate-animation](https://snack.expo.io/@matiasfh/example-translate-animation)
+<Snack snackId="@matiasfh/example-translate-animation" />
 
 En este ejemplo podemos ver dos elementos y dos animaciones, una con `timing` y la otra con `spring`.
 
@@ -120,7 +120,7 @@ Easing functions o funciones de aceleración especifican la forma o monto del ca
 Los objetos, en la vida real no inician o detienen su movimiento de forma abrupta, y casi nunca se mueven a una velocidad constante.
 React Native ofrece varias funciones de aceleración para aplicar en nuestras animaciones, para su uso simplemente debes importar el objeto `Easing`, como en el siguiente ejemplo
 
-[https://snack.expo.io/@matiasfh/rn-easing-examples](https://snack.expo.io/@matiasfh/rn-easing-examples)
+<Snack snackId="@matiasfh/rn-easing-examples" />
 
 En este pequeño proyecto puedes ver la aplicación de las diferentes funciones de aceleración disponibles
 
@@ -144,7 +144,7 @@ Cada propiedad definida para animar puede pasar por un proceso de interpolación
 Esto te permite utilizar tu valor de animación varias veces incluso si solo está definido como un valor entre `0` y `1` al esquematizar tu rango de valores con un rango de la propiedad que quieres animar.
 Vamos un ejemplo y animemos dos propiedades diferentes de dos componentes.
 
-[https://snack.expo.io/@matiasfh/rn-animation-interpolation-example](https://snack.expo.io/@matiasfh/rn-animation-interpolation-example)
+<Snack snackId="@matiasfh/rn-animation-interpolation-example" />
 
 En este ejemplo tenemos dos componentes animados. Un circulo rojo que se mueve hacia la derecha y un circulo azul que “desaparece” cambiando su opacidad, pero solo tenemos la definición de un valor de animación
 

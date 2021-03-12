@@ -1,24 +1,55 @@
 @font-face {
-  font-family: 'Muli';
-  src: url('Muli-Regular.ttf');
+  font-family: "Muli";
+  src: url("Muli-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Muli Bold';
-  src: url('Muli-Bold.ttf');
+  font-family: "Muli Bold";
+  src: url("Muli-Bold.ttf");
 }
 
 @font-face {
-  font-family: 'GT Walsheim Regular';
-  src: url('//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.eot');
-  src: url('//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.eot?#iefix')
-      format('embedded-opentype'),
-    url('//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.woff2')
-      format('woff2'),
-    url('//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.woff')
-      format('woff'),
-    url('//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.ttf')
-      format('truetype'),
-    url('//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.svg#GT Walsheim Pro Regular')
-      format('svg');
+  font-family: "GT Walsheim Regular";
+  src: url("//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.eot");
+  src: url("//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/0abeb2471faeb5269db428b9eac2075e.svg#GT Walsheim Pro Regular")
+      format("svg");
+}
+
+@font-face {
+  font-family: "Wotfard";
+  src: url("./Wotfard-Regular.ttf") format("truetype");
+  src: url("./Wotfard-Regular.otf") format("otf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Wotfard";
+  src: url("./Wotfard-RegularItalic.ttf") format("truetype");
+  src: url("./Wotfard-RegularItalic.otf") format("otf");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Wotfard";
+  src: url("Wotfard-Bold.ttf") format("truetype");
+  src: url("Wotfard-Bold.otf") format("otf");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Wotfard";
+  src: url("Wotfard-BoldItalic.ttf") format("truetype");
+  src: url("Wotfard-BoldItalic.otf") format("otf");
+  font-weight: 800;
+  font-style: italic;
 }

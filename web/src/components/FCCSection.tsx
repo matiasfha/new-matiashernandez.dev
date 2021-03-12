@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import tw, { styled } from "twin.macro";
 import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import DefaultGrid from "@/components/Grid";
 import { bpMaxSM } from "@/lib/breakpoints";
 
@@ -26,7 +26,7 @@ const H2 = styled.h2`
 `;
 
 const Copy = tw.p`
-font-muli text-sm md:text-base
+font-muli text-sm md:text-lg
 `;
 
 const Articles = tw.div`
@@ -34,7 +34,7 @@ const Articles = tw.div`
 `;
 
 const Card = styled.a`
-  ${tw`w-full grid mb-2 gap-6 no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-gray-100 md:p-2`};
+  ${tw`w-full grid mb-2 gap-6 no-underline transform transition duration-300 font-muli text-gray-500 md:hover:shadow-lg md:hover:scale-110 md:hover:bg-blue-50 md:p-2`};
   ${tw`dark:text-gray-100 dark:md:hover:bg-steel-700`};
   grid-template-columns: 200px 1fr;
   grid-template-areas: "imagen content";

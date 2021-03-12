@@ -22,7 +22,7 @@ const A = styled.a`
 `;
 
 const Copy = tw.p`
-  font-muli text-sm md:text-base
+  font-muli text-sm md:text-lg
 `;
 
 const Podcasts = tw.div`
@@ -33,44 +33,38 @@ const Card2 = styled.div`
   max-height: 200px;
 `;
 
-const query = graphql`
-  query {
-    allPodcastEpisodeCafeConTech(
-      limit: 1
-      sort: { fields: published_at, order: DESC }
-    ) {
-      nodes {
-        audio_url
-        description
-        published_at(formatString: "DD/MM/YYYY")
-        remoteImage {
-          childImageSharp {
-            fluid {
-              src
-            }
-          }
-        }
-      }
-    }
-
-    allPodcastEpisodeControlRemoto(
-      limit: 1
-      sort: { fields: published_at, order: DESC }
-    ) {
-      nodes {
-        audio_url
-        description
-        published_at(formatString: "DD/MM/YYYY")
-        remoteImage {
-          childImageSharp {
-            fluid {
-              src
-            }
-          }
+const query = graphql`{
+  allPodcastEpisodeCafeConTech(
+    limit: 1
+    sort: {fields: published_at, order: DESC}
+  ) {
+    nodes {
+      audio_url
+      description
+      published_at(formatString: "DD/MM/YYYY")
+      remoteImage {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
         }
       }
     }
   }
+  allPodcastEpisodeControlRemoto(
+    limit: 1
+    sort: {fields: published_at, order: DESC}
+  ) {
+    nodes {
+      audio_url
+      description
+      published_at(formatString: "DD/MM/YYYY")
+      remoteImage {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+        }
+      }
+    }
+  }
+}
 `;
 export default function PodcastSection() {
     const {

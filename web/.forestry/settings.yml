@@ -1,0 +1,30 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: ''
+webhook_url: https://hooks.zapier.com/hooks/catch/81285/ofojptk/
+sections:
+- type: directory
+  path: web/content/posts
+  label: Blog Posts
+  create: documents
+  match: "**/*"
+  new_doc_ext: mdx
+  templates:
+  - blog-post
+upload_dir: ''
+public_path: https://res.cloudinary.com/matiasfha/image/upload/c_scale,w_auto:100,dpr_auto
+front_matter_path: https://res.cloudinary.com/matiasfha/image/upload
+use_front_matter_path: true
+file_template: ":filename:"
+build:
+  preview_env:
+  - CONVERTKIT_SIGNUP_FORM=da21cefb3f
+  - BUZZSPROUT_TOKEN=c87c35a37bc06dc59b1226472c694fa4
+  - GOOGLE_ANALYTICS_ID=UA-45569809-2
+  preview_output_directory: public
+  install_dependencies_command: npm install
+  preview_docker_image: node:10
+  mount_path: "/srv"
+  working_dir: "/srv/public"
+  instant_preview_command: npm run forestry-preview

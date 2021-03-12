@@ -39,8 +39,8 @@ const HomeItem = styled(MenuItem)`
 
 const ButtonToggler = styled.button`
   ${tw`rounded-full outline-none border-0 w-10 h-10 cursor-pointer`};
-  ${tw`bg-gray-200 text-gray-900 hover:bg-gray-700 hover:text-black`};
-  ${tw`dark:bg-steel-900 dark:text-sepia-400 dark:hover:bg-steel-700 dark:hover:text-sepia-500`};
+  ${tw`text-gray-900  hover:text-sepia-500`};
+  ${tw` dark:text-sepia-400  dark:hover:text-sepia-500`};
 
   svg {
     ${tw`w-5 h-5`}
@@ -58,10 +58,10 @@ const DarkModeToggle = () => {
                 <svg
                     stroke="currentColor"
                     fill="none"
-                    stroke-width="2"
+                    strokeWidth="2"
                     viewBox="0 0 24 24"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     title="Switch to dark mode"
                     height="1em"
                     width="1em"
@@ -80,12 +80,11 @@ const DarkModeToggle = () => {
                     <svg
                         stroke="currentColor"
                         fill="none"
-                        stroke-width="2"
+                        strokeWidth="2"
                         viewBox="0 0 24 24"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         title="Switch to dark mode"
-                        class="css-bcim1s eu4f5580"
                         height="1em"
                         width="1em"
                     >
