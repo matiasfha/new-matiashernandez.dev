@@ -116,7 +116,11 @@ const query = graphql`
         frontmatter {
           banner {
             childImageSharp {
-              gatsbyImageData(height: 200, layout: CONSTRAINED)
+              gatsbyImageData(
+                height: 200
+                layout: CONSTRAINED
+                placeholder: BLURRED
+              )
             }
           }
           title

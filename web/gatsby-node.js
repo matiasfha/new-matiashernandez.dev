@@ -112,11 +112,11 @@ exports.onCreateNode = async ({
         getNode,
         basePath: `content`,
       }).replace(/\//gi, "");
-      const { lang } = node.frontmatter;
+      console.log(slug);
       createNodeField({
         name: "slug",
         node,
-        value: lang === "en" ? `en/${slug}` : slug,
+        value: slug,
       });
     }
   }
@@ -159,15 +159,15 @@ const getSpanishPosts = async (graphql, createPage, reporter) => {
   const result = await graphql(
     `
       query {
-        allMdx(
-          filter: { frontmatter: { tag: { ne: "en" } } }
-          sort: { order: DESC, fields: frontmatter___date }
-        ) {
+        allMdx(sort: { order: DESC, fields: frontmatter___date }) {
           edges {
             node {
               id
               fields {
                 slug
+              }
+              frontmatter {
+                lang
               }
             }
           }
@@ -187,47 +187,8 @@ const getSpanishPosts = async (graphql, createPage, reporter) => {
         component: path.resolve(`./src/templates/post.js`),
         context: {
           id: node.id,
-          pagePath: `/${node.fields.slug}`,
-          locale: "es",
-        },
-      });
-    }
-  });
-};
-
-const getEnglishPosts = async (graphql, createPage, reporter) => {
-  //Get spanish posts
-  const result = await graphql(
-    `
-      query {
-        allMdx(
-          filter: { frontmatter: { tag: { eq: "en" } } }
-          sort: { order: DESC, fields: frontmatter___date }
-        ) {
-          edges {
-            node {
-              id
-              slug
-            }
-          }
-        }
-      }
-    `
-  );
-  if (result.errors) {
-    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
-    return;
-  }
-  const posts = result.data.allMdx.edges;
-  posts.forEach(({ node }) => {
-    if (node.fields) {
-      createPage({
-        path: `en/${node.fields.slug}`,
-        component: path.resolve(`./src/templates/post.js`),
-        context: {
-          id: node.id,
-          pagePath: `en/${node.fields.slug}`,
-          locale: "en",
+          pagePath: node.fields.slug,
+          locale: node.lang || "es",
         },
       });
     }
@@ -375,38 +336,43 @@ const ThankYouPage = async (graphql, createPage, reporter) => {
   });
 };
 const BlogPage = async (graphql, createPage, reporter) => {
-  const result = await graphql(`{
-  site {
-    siteMetadata {
-      title
-      description
-      author
-      keywords
-      siteUrl
-      image
-    }
-  }
-  allMdx(
-    filter: {frontmatter: {tag: {ne: "en"}}}
-    sort: {order: DESC, fields: frontmatter___date}
-  ) {
-    nodes {
-      id
-      slug
-      frontmatter {
-        banner {
-          childImageSharp {
-            gatsbyImageData(width: 320, placeholder: BLURRED, layout: CONSTRAINED)
+  const result = await graphql(`
+    {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          keywords
+          siteUrl
+          image
+        }
+      }
+      allMdx(
+        filter: { frontmatter: { tag: { ne: "en" } } }
+        sort: { order: DESC, fields: frontmatter___date }
+      ) {
+        nodes {
+          id
+          slug
+          frontmatter {
+            banner {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 320
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                )
+              }
+            }
+            title
+            description
+            keywords
           }
         }
-        title
-        description
-        keywords
       }
     }
-  }
-}
-`);
+  `);
   const { nodes } = result.data.allMdx;
   createPage({
     path: "blog",
@@ -425,7 +391,6 @@ const BlogPage = async (graphql, createPage, reporter) => {
 // Posts
 exports.createPages = async ({ actions, graphql, reporter }) => {
   await getSpanishPosts(graphql, actions.createPage, reporter);
-  await getEnglishPosts(graphql, actions.createPage, reporter);
   await AboutPage(graphql, actions.createPage, reporter);
   await NewsletterPage(graphql, actions.createPage, reporter);
   await ThankYouPage(graphql, actions.createPage, reporter);
