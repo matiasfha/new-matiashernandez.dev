@@ -1,23 +1,24 @@
 ---
 date: 2021-01-24T22:13:59.000-04:00
-banner: https://res.cloudinary.com/matiasfha/image/upload/v1611543353/caspar-camille-rubin-fPkvU7RDmCo-unsplash_uh7g7z.jpg 
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1611543353/caspar-camille-rubin-fPkvU7RDmCo-unsplash_uh7g7z.jpg
 keywords:
 - eslint
 - linting
 - javascript
 - tooling
 tag: Seed
-title: ¿Qué es Linting y ESLint? 
-description: 
-bannerCredit: <span>Photo by <a href="https://unsplash.com/@casparrubin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Caspar Camille Rubin</a> on <a href="https://unsplash.com/s/photos/code-formatting?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> 
+title: ¿Qué es Linting y ESLint?
+description:
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@casparrubin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Caspar Camille Rubin</a> on <a href="https://unsplash.com/s/photos/code-formatting?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 favorite: true
+canonical_url: https://www.freecodecamp.org/espanol/news/que-es-linting-y-eslint/
 ---
 
 En el mundo del desarrollo de aplicaciones web hay una miríada de herramientas que buscan, no sólo mejorar la experiencia de usuario y la performance de tu aplicación en general, si no también, mejorar la experiencia de desarrollo (DX). Si bien tener tantas herramientas y opciones a disposición puede ser algo bueno para la mejora intrínsica de estas herramientas, es también un problema para muchos que están comenzando en este proceso ya que puede ser muy confuso seguir indicaciones que presumen de cierto grado de conocimiento previo.
 
-Si bien hay muchos "boilerplates" o "plantillas de proyectos" disponibles para cada tipo de framework, el uso de estas herramientas cae dentro de una "caja negra" donde pocas veces se entiende omo funcionan cada una de ellas, o el por que las necesito. 
+Si bien hay muchos "boilerplates" o "plantillas de proyectos" disponibles para cada tipo de framework, el uso de estas herramientas cae dentro de una "caja negra" donde pocas veces se entiende omo funcionan cada una de ellas, o el por que las necesito.
 
-En el caótico mundo del desarrollo web, es necesario tener una especie de guía para sobrevivir. 
+En el caótico mundo del desarrollo web, es necesario tener una especie de guía para sobrevivir.
 
 Esta serie de artículos busca cubrir esa area olvidada o perdida ([the missing semester](https://missing.csail.mit.edu)) tanto en la educación formal como en los tutoriales disponibles en internet. Obtener conocimiento y proficiencia con las herramientas, enfocándonos en la experiencia de desarrollador.
 
@@ -34,21 +35,21 @@ Esta serie de artículos busca cubrir esa area olvidada o perdida ([the missing 
 
 Es inevitable tener errores en el código que desarrollas para una aplicación, y todos sabemos que estos errores son malos, algunos causan problemas en la interfaz que generan incomodidad en los usuarios, otros comprometen la seguridad del sistema o simplemente rompen todo y la aplicación deja de funcionar.
 
-Hay un cierto grupo de errores que pueden ser identificados y reparados antes de que tu código llegue a ser ejecutado, estos pueden ser: 
+Hay un cierto grupo de errores que pueden ser identificados y reparados antes de que tu código llegue a ser ejecutado, estos pueden ser:
 
 - errores de sintaxis
 - Código poco intuitivo o dificil de mantener
 - Uso de "malas practicas"
 - O uso de estlios de codigo inconsistentes.
 
-Estos errores pueden ser incluso más comunes que otros más graves dado a que son menos evidentes. 
+Estos errores pueden ser incluso más comunes que otros más graves dado a que son menos evidentes.
 Capturar errores antes de que tu código se ejecute puede salvarte, no sólo del error en si mismo, si no, también ahorrarte mucho tiempo en la cacería de esos errores.
 
 > En la actualidad, se utiliza este término para designar a herramientas que realizan estas tareas de comprobación en cualquier lenguaje de programación. Las herramientas de tipo lint generalmente funcionan realizando un análisis estático del código fuente. - Wikipedia [https://es.wikipedia.org/wiki/Lint](https://es.wikipedia.org/wiki/Lint)
 
 En otras palabras, es una herramienta de software que revisa y "observa" tu código en busca de errores que puedan afectar tu código. Algunos "linteres" incluso pueden darte sugerencias de como arreglar el error o incluso arreglarlo ellos mismos.
 
-Las herramientas de linting pertenecen a un grupo de programas conocidos como **herramientas de análisis estático** , un proceso de revisión de un programa sin ejecutar dicho programa, por lo general la revisión se realiza sobre el código fuente o alguna clase de código objeto. Visto de otra forma es como tener a un revisor de tu pull request pero automatizado y siempre observando lo que escribes. 
+Las herramientas de linting pertenecen a un grupo de programas conocidos como **herramientas de análisis estático** , un proceso de revisión de un programa sin ejecutar dicho programa, por lo general la revisión se realiza sobre el código fuente o alguna clase de código objeto. Visto de otra forma es como tener a un revisor de tu pull request pero automatizado y siempre observando lo que escribes.
 
 Un ejemplo de herramienta de "linting", y el que usaremos en este artículo es **ESLint**.
 
@@ -81,7 +82,7 @@ ESLint, recorre este árbol visitando cada uno de los nodos, en cada visita, rec
 
 Puedes ver una representación de un AST utilizando [https://astexplorer.net](https://astexplorer.net/)
 
-Un ejemplo de AST es 
+Un ejemplo de AST es
 
 ```jsx
 function setCount(v) {
@@ -169,7 +170,7 @@ export default function(context) {
     Identifier(node) {
       if(node.name === 'console'){
         context.report(node, 'Left in log statement');
-      } 
+      }
     }
   };
 };
@@ -299,7 +300,7 @@ La siguiente pregunta será sobre el estilo de código que quieres usar: `¿Cóm
 
 Selecciona la primera opción: `Usar una guía de estilo popular` y en la siguiente pregunta selecciona `Airbnb`
 
-Luego se te preguntará por el tipo de archivo para la configuración cuyas opciones son `YAML`,`Javascript` y `JSON`. 
+Luego se te preguntará por el tipo de archivo para la configuración cuyas opciones son `YAML`,`Javascript` y `JSON`.
 
 Finalmente verás el mensaje de aviso que se instalarán algunas dependencias extras y la siguiente pregunta
 
@@ -360,7 +361,7 @@ Aquí agregamos `eslint:recommended` al arreglo  `extends` indicando que tambié
 
 El uso más simple que puedes darle a ESLint es revisar tu código de forma manual ejecutando un script en la terminal, para esto puedes escribir `npx eslint  . --ext .js` cada vez o configurar este comando como un script de npm.
 
-Abre el archivo `package.json` en tu editor de texto favorito y agrega la sección `scripts` 
+Abre el archivo `package.json` en tu editor de texto favorito y agrega la sección `scripts`
 
 ```jsx
 ...
@@ -424,7 +425,7 @@ Y el resultado será
 El proceso de `linting` se han convertido en una herramienta básica y necesaria en todo proyecto de software, sobre todo en el mundo del desarrollo web con javascript.
 
 Sus beneficios van más allá de lo que ESLint hace técnicamente ya que ayuda a los desarrolladores a enfoncarse en lo más importante: desarrollar soluciones.
-Este tutorial introduce algunas de las cosas que puedes lograr utilizando ESLint y una breve descripción de cómo ESLint funciona. 
+Este tutorial introduce algunas de las cosas que puedes lograr utilizando ESLint y una breve descripción de cómo ESLint funciona.
 
 Si quieres leer más información sobre las reglas que puedes utilizar y cómo personalizar las reglas de ESLint puedes revisar la  [documentación](https://eslint.org/docs/rules/).
 

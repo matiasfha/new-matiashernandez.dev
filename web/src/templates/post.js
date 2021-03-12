@@ -70,6 +70,7 @@ export default function PostTemplate({ data: { mdx } }) {
   const frontmatter = {
     ...mdx.frontmatter,
     keywords: mdx.frontmatter.keywords.join(", "),
+    slug: mdx.fields.slug,
   };
   return (
     <>
@@ -121,6 +122,7 @@ export const pageQuery = graphql`
         slug
       }
       frontmatter {
+        canonical_url
         title
         description
         date(formatString: "MMMM DD, YYYY")

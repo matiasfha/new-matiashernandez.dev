@@ -10,11 +10,13 @@ export type FrontMatterT = {
     keywords: string;
     image?: string;
     siteUrl?: string;
+    canonical_url?: string;
 };
 export type Props = {
     frontmatter?: FrontMatterT;
     isBlogPost?: boolean;
     lang?: string;
+    slug?: string;
 };
 
 const Seo: React.FC<Props> = ({
@@ -31,10 +33,10 @@ const Seo: React.FC<Props> = ({
         cloudName: "matiasfha",
         imagePublicId: "social-card.jpg",
     });
-
     const title = frontmatter.title;
     const description = frontmatter.description;
     const keywords = frontmatter.keywords;
+    const siteUrl = `https://matiashernandez.dev/${frontmatter.slug || ""}`;
     return (
         <Helmet title={title}>
             <html lang={lang} />
@@ -43,6 +45,7 @@ const Seo: React.FC<Props> = ({
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             <meta property="og:type" content={isBlogPost ? "article" : "website"} />
+            <link rel="canonical" href={frontmatter.canonical_url || siteUrl} />
             <meta property="og:site_name" content={frontmatter.siteUrl} />
             <meta property="keywords" content={keywords} />
             <meta property="description" content={description} />
