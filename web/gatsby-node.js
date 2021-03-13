@@ -145,6 +145,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     node: {
       fs: "empty",
     },
+    optimization: {
+      moduleIds: "size",
+    },
     resolve: {
       alias: {
         "@": path.join(__dirname, "src"),
