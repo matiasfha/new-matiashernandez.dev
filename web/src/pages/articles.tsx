@@ -7,8 +7,8 @@ import EFSection from '@/components/EFSection';
 
 export default function Index({ data: { site } }) {
   const frontmatter = {
-    ...site.siteMetadata,
-    keywords: site.siteMetadata.keywords.join(", "),
+    ...site.metadata,
+    keywords: site.metadata.keywords.join(", "),
   };
   return (
     <Layout frontmatter={frontmatter}>
@@ -21,7 +21,7 @@ export default function Index({ data: { site } }) {
 }
 
 export const pageQuery = graphql`
-  query siteMetadata {
+  query metaData {
     site {
       siteMetadata {
         title
