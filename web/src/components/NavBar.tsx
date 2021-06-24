@@ -146,6 +146,9 @@ const NavBar: React.FC = ({ lang = "es" }) => {
                         );
                     })}
                     <li>
+                      <MenuItem to="/articles">Artículos</MenuItem>
+                    </li>
+                    <li>
                         <DarkModeToggle />
                     </li>
                 </Menu>

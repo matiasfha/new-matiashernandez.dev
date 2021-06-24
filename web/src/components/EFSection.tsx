@@ -1,7 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import tw, { styled } from "twin.macro";
-import { useStaticQuery, graphql } from "gatsby";
 import DefaultGrid from "@/components/Grid";
 import { bpMaxSM } from "@/lib/breakpoints";
 
@@ -77,54 +76,38 @@ const H3 = tw.h3`
   font-muli text-gray-900 m-0 dark:text-gray-100
 `;
 
-const query = graphql`
-  query {
-    allFeedFccEs {
-      nodes {
-        contentSnippet
-        id
-        image {
-          attrs {
-            url
-          }
-        }
-        link
-        isoDate(formatString: "DD/MM/YYYY")
-        title
-      }
-    }
-    allFeedFccEn {
-      nodes {
-        contentSnippet
-        id
-        image {
-          attrs {
-            url
-          }
-        }
-        link
-        isoDate(formatString: "DD/MM/YYYY")
-        title
-      }
-    }
-  }
-`;
+const Tag = tw.div`
+  text-gray-100 bg-gray-600 rounded-md p-4 font-muli dark:text-gray-600 dark:bg-gray-100 
+`
 
 const title = {
-    es: `También escribo en [Freecodecamp](http://freecodecamp.org/espanol/news/author/matias-hernandez)`,
-    en: `I also write on [Freecodecamp](http://freecodecamp.org/news/author/matias-hernandez)`,
+    es: `Estos son algunos de mis artículos en distintas publicaciones`,
 };
 
-const copy = {
-    es: `Freecodecamp es una organización sin fines de lucro para la enseñanza de desarrollo de software y formación de futuros desarrolladores.
-Tengo el honor y agrade de escribir para su editorial en español e ingles.`,
-    en: `Freecodecamp is a non-profit organization for teaching software development and training future developers.
-I have the honor and pleasure to write for your editorial in Spanish and English.`,
-};
+const articles = [
+  {
+    title: "¿Cómo funciona la prop `key` en React?",
+    link: 'https://escuelafrontend.com/articulos/como-funciona-la-prop-key-en-react',
+    publication: 'Escuela Frontend'
+  },
+  {
+    title: "La Guía Definita de Métodos de Arreglos en Javascript",
+    link: 'https://escuelafrontend.com/articulos/metodos-de-arreglos',
+    publication: "Escuela Frontend"
+  },
+  {
+    title: "Escriba Javascript Moderno con Arrow Functions",
+    link: "https://escuelafrontend.com/articulos/arrow-functions",
+    publication: "Escuela Frontend"
+  },
+  {
+    title: "Hugo vs Gatsby - Draft.dev",
+    link: "https://draft.dev/learn/platforms/hugo-vs-gatsby",
+    publication: "Draft-dev"
+  }
+]
 
-export default function FreecodecampSection({ lang = "es" }) {
-    const { allFeedFccEs, allFeedFccEn } = useStaticQuery(query);
-    const data = lang === "es" ? allFeedFccEs : allFeedFccEn;
+export default function EFSection({ lang = "es" }) {
     return (
         <Section>
             <div>
@@ -132,16 +115,14 @@ export default function FreecodecampSection({ lang = "es" }) {
                     <ReactMarkdown>{title[lang]}</ReactMarkdown>
                 </H2>
             </div>
-            <Copy>{copy[lang]}</Copy>
+            
             <Articles>
-                {data.nodes.map((post) => {
+                {articles.map((post) => {
                     return (
                         <Card href={post.link} key={post.id}>
-                            <img src={post.image?.attrs?.url} alt={post.title} />
                             <div>
                                 <H3>{post.title}</H3>
-                                <p>{post.contentSnippet}</p>
-                                <span>{post.isoDate}</span>
+                                <Tag>{post.publication}</Tag>
                             </div>
                         </Card>
                     );

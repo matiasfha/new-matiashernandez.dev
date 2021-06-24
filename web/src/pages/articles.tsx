@@ -2,10 +2,8 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "@/components/Layout";
 import Hero from "@/components/Hero";
-import EggheadSection from "@/components/EggheadSection";
-import PodcastSection from "@/components/PodcastSection";
-import ArticlesSection from "@/components/ArticlesSection";
 import FCCSection from "@/components/FCCSection";
+import EFSection from '@/components/EFSection';
 
 export default function Index({ data: { site } }) {
   const frontmatter = {
@@ -15,10 +13,9 @@ export default function Index({ data: { site } }) {
   return (
     <Layout frontmatter={frontmatter}>
       <Hero />
-      <EggheadSection />
-      <PodcastSection />
+      <EFSection />
       <FCCSection />
-      <ArticlesSection />
+      
     </Layout>
   );
 }

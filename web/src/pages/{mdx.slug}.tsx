@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import tw, { styled, css } from "twin.macro";
 import { TwitterIcon, TwitterShareButton } from "react-share";
 import Seo from "@/components/Seo";
@@ -11,7 +11,7 @@ import { bpMaxSM } from "@/lib/breakpoints";
 
 const Grid = styled.div`
   ${tw`max-w-screen-lg mx-auto grid grid-cols-1 pt-20`}
-  grid-template-rows: minmax(250px,480px) minmax(200px,220px) 1fr 100px;
+  grid-template-rows: minmax(250px,320px) minmax(100px,190px) 1fr 100px;
   grid-template-areas:
     "img"
     "title"
@@ -22,17 +22,17 @@ const Grid = styled.div`
 
 const ImgContainer = styled.div`
   grid-area: img;
-  justify-self: center;
-  width: 640px;
+  ${tw`self-center max-w-screen-lg h-80`}
+
   ${bpMaxSM} {
     width: 100%;
   }
 `;
 const TitleContainer = styled.div`
   grid-area: title;
-  ${tw`pb-8 md:pb-0`};
+  ${tw`pb-4 md:pb-0`};
   p {
-    ${tw`font-muli text-sm text-gray-700 dark:text-gray-100 m-0`}
+    ${tw`font-muli italic text-sm text-gray-600 dark:text-gray-200 m-0 pt-4`}
   }
 `;
 const H1 = styled.h1`
@@ -41,7 +41,7 @@ const H1 = styled.h1`
 
 const Content = styled.div`
   grid-area: content;
-  ${tw`font-muli text-left text-lg`}
+  ${tw`font-wotfard text-left text-lg`}
 `;
 
 const Footer = styled.div`
@@ -63,20 +63,24 @@ export default function PostTemplate({ data: { mdx } }) {
     ...mdx.frontmatter,
     keywords: mdx.frontmatter.keywords.join(", "),
   };
+  const image = getImage(mdx.banner)
+  const updatedWhen = frontmatter.lang !== 'en' ? 'Actualizado' : 'Last updated'
+  const editThis = frontmatter.lang !== 'en' ? 'Edita esto en': 'Edit this in'
+  const shareThis = frontmatter.lang !== 'en' ? 'Comparte en': 'Shart it in'
   return (
     <>
       <Layout frontmatter={frontmatter} isBlogPost>
         <Grid>
           <ImgContainer>
-            <Img
-              fluid={mdx.frontmatter.banner.childImageSharp.fluid}
+            <GatsbyImage
+              image={image}
               title={mdx.frontmatter.title}
               alt={mdx.frontmatter.title}
             />
           </ImgContainer>
           <TitleContainer>
             <H1>{mdx.frontmatter.title}</H1>
-            <p>{mdx.frontmatter.date}</p>
+            <p>{updatedWhen} {mdx.frontmatter.date}</p>
           </TitleContainer>
           <Content>
             <MDXRenderer>{mdx.body}</MDXRenderer>
@@ -84,23 +88,20 @@ export default function PostTemplate({ data: { mdx } }) {
           <Footer>
             <p>
               <a
-                href={`https://github.com/matiasfha/new-matiashernandez.dev/tree/master/web/content/posts/${mdx.fields.slug}.mdx`}
+                href={`https://github.com/matiasfha/new-matiashernandez.dev/tree/master/web/content/posts/${mdx.slug}.mdx`}
               >
-                Edita esto en github
+                {editThis} github
               </a>
             </p>
             <p>
-              Comparte en
+              {shareThis}
               <TwitterShareButton
-                url={`https://matiashernandez.dev/${mdx.fields.slug}`}
+                url={`https://matiashernandez.dev/${mdx.slug}`}
                 title={mdx.frontmatter.title}
                 via="matiasfha"
               >
                 <span>Twitter</span>
               </TwitterShareButton>
-            </p>
-            <p>
-              <a href="https://www.buymeacoffee.com/matiasfha"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=matiasfha&button_colour=0061ff&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"></a>
             </p>
           </Footer>
         </Grid>
@@ -112,22 +113,17 @@ export default function PostTemplate({ data: { mdx } }) {
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
     mdx(id: { eq: $id }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        description
-        date(formatString: "MMMM DD, YYYY")
-        bannerCredit
         banner {
           childImageSharp {
-            fluid(maxWidth: 640) {
-              ...GatsbyImageSharpFluid
-              ...GatsbyImageSharpFluidLimitPresentationSize
-            }
+            gatsbyImageData(width: 1024, height: 320, placeholder: BLURRED)
           }
         }
+      frontmatter {
+        canonical_url
+        title
+        description
+        date(formatString: "DD/MM/YY")
+        bannerCredit
         keywords
       }
       body
