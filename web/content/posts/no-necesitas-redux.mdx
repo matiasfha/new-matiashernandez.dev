@@ -22,7 +22,7 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@oplattner?utm_source
   Plattner</a> on <a href="https://unsplash.com/s/photos/state-management?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 ---
-Una pregunta que me he encontrado varias veces de parte de quienes están apreniendo React es si deben o no aprender Redux o si deben o no utilizar Redux.
+Una pregunta que me he encontrado varias veces de parte de quienes están aprendiendo React es si deben o no aprender Redux o si deben o no utilizar Redux.
 
 Por mucho tiempo Redux fue, de alguna forma, la solución estándar para el manejo de estado en aplicaciones React, estándar al nivel de que podías encontrarlo, en mi opinión, en el 90% de las aplicacione escritas con React hasta ese momento. Era lo último y lo mejor que teniamos disponible para el manejo de estado, pero Redux, como muchas otras soluciones, no era y no es la solución a todo. **No hay silver bullets**.
 
@@ -56,7 +56,7 @@ Una forma de ver el estado es considerarlo como el resultado de una acción, en 
 
 El simple hecho de tener esta variable ya implica que estas manejando el estado, hemos creado una estructura de datos explicita para almacenar los resultados de las acciones sobre nuestra aplicación.
 
-Las diferentes librerías de manejo de estado ofrecen utilidades para crear estas estructuras de datos y actualizarlas basadas en las acciones que ocurren. React define un flujo de datos de una sola dirección indicando que la actualizaciones de estado deben hacerse de una forma centralizada, Redux, ofrecía una solución a esto, creando un estado centralizado,por medio de un objeto, que sólo puede ser actualizado utilizando un mecanismo de acciones.
+Las diferentes librerías de manejo de estado ofrecen utilidades para crear estas estructuras de datos y actualizarlas basadas en las acciones que ocurren. React define un flujo de datos de una sola dirección indicando que las actualizaciones de estado deben hacerse de una forma centralizada, Redux, ofrecía una solución a esto, creando un estado centralizado,por medio de un objeto, que sólo puede ser actualizado utilizando un mecanismo de acciones.
 
 La idea es que los componentes pudieran leer partes de este estado para decidir que y cómo se renderiza.
 
@@ -64,8 +64,8 @@ La idea es que los componentes pudieran leer partes de este estado para decidir 
 
 Redux fue una solución revolucionaría, nacida el 2015 e inspirada por [elm](https://elm-lang.org) y trajo dos ideas interesantes a React.
 
-* Combinó el modelo de [Flux](https://facebook.github.io/flux/) con el concepto de [Reducer](https://redux.js.org/glossary#reducer) creando un patrón de diseño sencillo que inmediatmente generó tracción.
-* Y ofreció una solución para el manejo de estado global de una aplicación. Sin esto la forma en que podías resolver el problema de estado global (estado que puede ser utilizado por todos los componentes) era tener un estado (un objeto) definido en el componente root (normalmente llamdo \`< App />\`) y pasar los valores de este estado a travez de props a los componentes hijos: una pesadilla.
+* Combinó el modelo de [Flux](https://facebook.github.io/flux/) con el concepto de [Reducer](https://redux.js.org/glossary#reducer) creando un patrón de diseño sencillo que inmediatamente generó tracción.
+* Y ofreció una solución para el manejo de estado global de una aplicación. Sin esto la forma en que podías resolver el problema de estado global (estado que puede ser utilizado por todos los componentes) era tener un estado (un objeto) definido en el componente root (normalmente llamado \`< App />\`) y pasar los valores de este estado a travez de props a los componentes hijos: una pesadilla.
 
   Redux, en su trastienda usaba la api Context que en ese entonces era una api pseudo-experimental pensada solo para el uso interno de React.
 
@@ -75,11 +75,11 @@ Redux fue una solución revolucionaría, nacida el 2015 e inspirada por [elm](ht
 
   Pero más allá del cambio en las herramientas el problema principal de Redux es que por lo general tendemos a sobre dimensionar la solución a un problema y comenzamos a usar el martillo (redux) para todos los problemas.
 
-Redux hace uso de un estado **global**, es decir, estado que **quizá** sea necesario en toda la aplicación, pero muchas veces vi código que almacenaba en este estado los datos de un formulario u otros estados **locales**, esto en general es un anti patrón que lleva a muchos problemas tanto de interacción y performance como también de mantenibilidad y escalabilidad: Más grande tu aplicación, mas grande tu problema. Estoy convencido que la ubiquidad de Redux se debe a que ofreció una solución al problemde de prop drilling (el pasar props de un componente a otro.
+Redux hace uso de un estado **global**, es decir, estado que **quizá** sea necesario en toda la aplicación, pero muchas veces vi código que almacenaba en este estado los datos de un formulario u otros estados **locales**, esto en general es un anti patrón que lleva a muchos problemas tanto de interacción y performance como también de mantenibilidad y escalabilidad: Más grande tu aplicación, más grande tu problema. Estoy convencido que la ubiquidad de Redux se debe a que ofreció una solución al problemde de prop drilling (el pasar props de un componente a otro.
 
 Mi punto de vista es que en la gran mayoría de las situaciones no necesitas Redux (y quizá tampoco otra solución de manejo de estado). En mi experiencia la mayoría de aplicaciones no tienen un estado 100% global y gran parte de sus problemas pueden ser resueltos con el uso de la api Context.
 
-Para ser claros, Redux es una gran herramienta, una solución inteligente a un problema complejo y es bueno usarlo pero cuando su uso es adecuado, cuando realmente tienes un estado global, pero si tienes estados simples, como un formulario o si una venta modal debe o no mostrarse Redux es “overkill”.
+Para ser claros, Redux es una gran herramienta, una solución inteligente a un problema complejo y es bueno usarlo pero cuando su uso es adecuado, cuando realmente tienes un estado global, pero si tienes estados simples, como un formulario o si una ventana modal debe o no mostrarse Redux es “overkill”.
 
 Si tu pregunta es “debo aprender Redux” o “debo integrar Redux en mi proyecto”, la más probable respuesta es no, no debes, y aparentemente no lo necesitas es por que eso que estás en la duda.
 Redux es una bestia complicada que más que ayudarte en esta etapa de tu proceso, simplemente se pondrá en tu camino. Revisa los conceptos fundamentales, experimenta hasta donde puedes llegar con React en si mismo. React es una solución para el manejo de estado.
