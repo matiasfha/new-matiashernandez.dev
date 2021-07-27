@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "jasba24",
+      "name": "Sebastian Buitrago",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71221550?v=4",
+      "profile": "https://github.com/jasba24",
+      "contributions": [
+        "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "new-matiashernandez.dev",
+  "projectOwner": "matiasfha",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
